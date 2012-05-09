@@ -1,7 +1,9 @@
-package ihm ;
+package ihm;
 
-import javax.swing.* ;
-import java.awt.* ;
+import javax.swing.*;
+import java.awt.*;
+import datas.Annuaire;
+import datas.Fiche;
 
 public class Wintel extends JFrame {
 
@@ -39,7 +41,7 @@ public class Wintel extends JFrame {
 	private JLabel titreAbonnes;
 	private JList listeContacts;
 
-	//private Annuaire monAnnuaire ;
+	private Annuaire monAnnuaire ;
 
 	public static void main(String[] args) {
 		Wintel lanceur = new Wintel();
@@ -49,7 +51,7 @@ public class Wintel extends JFrame {
 		super("Wintel"); // Appel du constructeur de JFrame
 		this.creerInterface(); // Mise en place de la fenêtre
 		//this.attacherReactions(); // Ecouteurs des évènements utilisateurs
-		//this.init(); // Création de l'annuaire (+ des 3 WtDialog)
+		this.init(); // Création de l'annuaire (+ des 3 WtDialog)
 		this.setSize(500, 500); // Taille de la fenêtre principale
 		this.setVisible(true); // Rendre la fenêtre visible à l'écran
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Clic sur la croix
@@ -83,7 +85,7 @@ public class Wintel extends JFrame {
 		
 		//Centre droit
 		JPanel panelCaract = new JPanel();
-		GridLayout grilleCentreDroit = new GridLayout(0, 1);
+		GridLayout grilleCentreDroit = new GridLayout(0, 1, 0, 20);
 		panelCaract.setLayout(grilleCentreDroit);
 		panelCentre.add(panelCaract);
 		
@@ -133,21 +135,25 @@ public class Wintel extends JFrame {
 		setJMenuBar(menu);
 	}
 	
+	private void init() {
+		monAnnuaire = new Annuaire();
+	}
+	
 	private void attacherReactions() {
 	
 	}
 	
-	/*public void ajouterAbonne( String nom , String prenom , String num ) {
-		Fiche tmpFiche ;
+	public void ajouterAbonne(String nom , String prenom , String numTel) {
+		Fiche tmpFiche;
 		try {
-			tmpFiche = new Fiche( nom , prenom , num ) ;
-			monAnnuaire.ajouter( tmpFiche.getNom() , tmpFiche ) ;
-			DefaultListMode liste = listeContacts.getModel() ;
-			liste.addElement( tmpFiche.getNom() ) ;
-			listeContacts.setModel( liste ) ;
+			tmpFiche = new Fiche(nom, prenom, numTel);
+			monAnnuaire.ajouter(tmpFiche.getNom(), tmpFiche);
+			ListModel liste = listeContacts.getModel();
+			liste.addElement(tmpFiche.getNom());
+			listeContacts.setModel(liste);
 		}
-		catch ( IllegalArgumentException e ) {
+		catch (IllegalArgumentException e) {
 			/* Déclencher l'ouverture d'une fenêtre ici */
-		/*}
-	}*/
+		}
+	}
 }
