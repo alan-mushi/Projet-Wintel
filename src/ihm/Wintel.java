@@ -81,6 +81,7 @@ public class Wintel extends JFrame {
 		panelCentre.setLayout(grilleCentreGauche);
 		
 		listeContacts = new JList();
+		listeContacts.setModel(new DefaultListModel());
 		panelCentre.add(listeContacts);
 		
 		//Centre droit
@@ -148,12 +149,16 @@ public class Wintel extends JFrame {
 		try {
 			tmpFiche = new Fiche(nom, prenom, numTel);
 			monAnnuaire.ajouter(tmpFiche.getNom(), tmpFiche);
-			ListModel liste = listeContacts.getModel();
+			DefaultListModel liste = (DefaultListModel) listeContacts.getModel();
+			System.out.println("Nom = " + tmpFiche.getNom());
 			liste.addElement(tmpFiche.getNom());
-			listeContacts.setModel(liste);
 		}
-		catch (IllegalArgumentException e) {
+		catch(IllegalArgumentException e) {
 			/* Déclencher l'ouverture d'une fenêtre ici */
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }
