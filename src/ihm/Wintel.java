@@ -7,26 +7,26 @@ import datas.Fiche;
 
 public class Wintel extends JFrame {
 
-	// Attributs des éléments graphiques
+	// Attributs des Ã©lÃ©ments graphiques
 	//Labels
 	private JLabel labNom;
 	private JLabel labPrenom;
 	private JLabel labNumero;
-	
+
 	//Zones de texte
 	private JTextField nom;
 	private JTextField prenom;
 	private JTextField numero;
-	
+
 	//Boutons
 	private JButton composer;
-	
+
 	//Menu
 	private JMenuBar menu;
 	private JMenu menuFichier;
 	private JMenu menuAbonnes;
 	private JMenu menuAide;
-	
+
 	//Item des menus
 	private JMenuItem itemCharger;
 	private JMenuItem itemSauver;
@@ -35,7 +35,7 @@ public class Wintel extends JFrame {
 	private JMenuItem itemModifier;
 	private JMenuItem itemSupprimer;
 	private JMenuItem itemAide;
-	
+
 	//Divers
 	private JLabel titreCaracteristiques;
 	private JLabel titreAbonnes;
@@ -46,17 +46,17 @@ public class Wintel extends JFrame {
 	public static void main(String[] args) {
 		Wintel lanceur = new Wintel();
 	}
-	
+
 	public Wintel() {
 		super("Wintel"); // Appel du constructeur de JFrame
-		this.creerInterface(); // Mise en place de la fenêtre
-		//this.attacherReactions(); // Ecouteurs des évènements utilisateurs
-		this.init(); // Création de l'annuaire (+ des 3 WtDialog)
-		this.setSize(500, 500); // Taille de la fenêtre principale
-		this.setVisible(true); // Rendre la fenêtre visible à l'écran
+		this.creerInterface(); // Mise en place de la fenÃªtre
+		//this.attacherReactions(); // Ecouteurs des Ã©vÃ¨nements utilisateurs
+		this.init(); // CrÃ©ation de l'annuaire (+ des 3 WtDialog)
+		this.setSize(500, 500); // Taille de la fenÃªtre principale
+		this.setVisible(true); // Rendre la fenÃªtre visible Ã  l'Ã©cran
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Clic sur la croix
 	}
-	
+
 	private void creerInterface() {
 		//Elements de la partie "nord"
 		BorderLayout gestionnairePlacement = new BorderLayout();
@@ -65,36 +65,36 @@ public class Wintel extends JFrame {
 		this.add(panelNord, BorderLayout.NORTH); //Placement de panelNord dans la partie "nord"
 		GridLayout grilleNord = new GridLayout(1, 2);		
 		panelNord.setLayout(grilleNord);
-		
-		titreAbonnes = new JLabel("Abonnés");
+
+		titreAbonnes = new JLabel("AbonnÃ©s");
 		panelNord.add(titreAbonnes);
-		
-		titreCaracteristiques = new JLabel("Caractéristiques");
+
+		titreCaracteristiques = new JLabel("CaractÃ©ristiques");
 		panelNord.add(titreCaracteristiques);
-		
+
 		//Elements de la partie "centre"
 		JPanel panelCentre = new JPanel();
 		this.add(panelCentre, BorderLayout.CENTER);
-		
+
 		//Centre gauche
 		GridLayout grilleCentreGauche = new GridLayout(1, 2, 40, 0);
 		panelCentre.setLayout(grilleCentreGauche);
-		
+
 		listeContacts = new JList();
 		listeContacts.setModel(new DefaultListModel());
 		panelCentre.add(listeContacts);
-		
+
 		//Centre droit
 		JPanel panelCaract = new JPanel();
 		GridLayout grilleCentreDroit = new GridLayout(0, 1, 0, 20);
 		panelCaract.setLayout(grilleCentreDroit);
 		panelCentre.add(panelCaract);
-		
+
 		labNom = new JLabel("Nom");
 		nom = new JTextField();
-		labPrenom = new JLabel("Prénom");
+		labPrenom = new JLabel("PrÃ©nom");
 		prenom = new JTextField();
-		labNumero = new JLabel("Numéro");
+		labNumero = new JLabel("NumÃ©ro");
 		numero = new JTextField();
 		composer = new JButton("Composer");
 		panelCaract.add(labNom);
@@ -104,50 +104,66 @@ public class Wintel extends JFrame {
 		panelCaract.add(labNumero);
 		panelCaract.add(numero);
 		panelCaract.add(composer);
-		//Création du menu
+		//CrÃ©ation du menu
 		menu = new JMenuBar();
 		menuFichier = new JMenu("Fichier");
-		menuAbonnes = new JMenu("Abonnés");
+		menuAbonnes = new JMenu("AbonnÃ©s");
 		menuAide = new JMenu("Aide");
-		
-		//Ajout des menu à la barre de menu
+
+		//Ajout des menu Ã  la barre de menu
 		menu.add(menuFichier);
 		menu.add(menuAbonnes);
 		menu.add(menuAide);
-		
-		//Création et association des items aux menus correspondants
+
+		//CrÃ©ation et association des items aux menus correspondants
 		itemCharger = new JMenuItem("Charger");
 		menuFichier.add(itemCharger);
 		itemSauver = new JMenuItem("Sauver");
 		menuFichier.add(itemSauver);
 		itemQuitter = new JMenuItem("Quitter");
 		menuFichier.add(itemQuitter);
-		
+
 		itemAjouter = new JMenuItem("Ajouter");
 		menuAbonnes.add(itemAjouter);
 		itemModifier = new JMenuItem("Modifier");
 		menuAbonnes.add(itemModifier);
 		itemSupprimer = new JMenuItem("Supprimer");
 		menuAbonnes.add(itemSupprimer);
-		
+
 		itemAide = new JMenuItem("Aide");
 		menuAide.add(itemAide);
-		
+
 		setJMenuBar(menu);
 	}
-	
+
 	private void init() {
 		monAnnuaire = new Annuaire();
 	}
-	
+
 	private void attacherReactions() {
-	
+
 	}
-	
+
 	public Annuaire getAnnuaire() {
 		return this.monAnnuaire;
 	}
-	
+
+	public JList getListeGche() {
+		return (this.listeContacts) ;
+	}
+
+	public JTextField getFieldNom() { 
+		return (this.nom) ;
+	}
+
+	public JTextField getFieldPrenom() {
+		return (this.prenom) ;
+	}
+
+	public JTextField getFieldNumero() {
+		return (this.numero) ;
+	}
+
 	public void ajouterAbonne(String nom , String prenom , String numTel) {
 		Fiche tmpFiche;
 		try {
@@ -158,7 +174,7 @@ public class Wintel extends JFrame {
 			liste.addElement(tmpFiche.getNom());
 		}
 		catch(IllegalArgumentException e) {
-			/* Déclencher l'ouverture d'une fenêtre ici */
+			/* DÃ©clencher l'ouverture d'une fenÃªtre ici */
 			System.out.println(e.getMessage());
 		}
 		catch(Exception e) {
