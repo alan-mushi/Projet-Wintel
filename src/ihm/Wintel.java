@@ -144,6 +144,10 @@ public class Wintel extends JFrame {
 	
 	}
 	
+	public Annuaire getAnnuaire() {
+		return this.monAnnuaire;
+	}
+	
 	public void ajouterAbonne(String nom , String prenom , String numTel) {
 		Fiche tmpFiche;
 		try {
