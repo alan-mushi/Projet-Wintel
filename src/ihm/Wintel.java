@@ -45,7 +45,7 @@ public class Wintel extends JFrame {
 
 	public static void main(String[] args) {
 		Wintel lanceur = new Wintel();
-		// lanceur.ajouterAbonne("test", "test", "02586685241");
+		lanceur.ajouterAbonne("test", "test", "02586685241");
 	}
 
 	public Wintel() {
@@ -144,6 +144,7 @@ public class Wintel extends JFrame {
 	private void attacherReactions() {
 		itemSauver.addActionListener(new EcouteurItemSauver(this));
 		itemCharger.addActionListener(new EcouteurItemCharger(this));
+		listeContacts.addMouseListener(new EcouteurListeGche(this));
 	}
 	
 	public Annuaire getAnnuaire() {
