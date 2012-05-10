@@ -45,12 +45,13 @@ public class Wintel extends JFrame {
 
 	public static void main(String[] args) {
 		Wintel lanceur = new Wintel();
+		// lanceur.ajouterAbonne("test", "test", "02586685241");
 	}
 
 	public Wintel() {
 		super("Wintel"); // Appel du constructeur de JFrame
 		this.creerInterface(); // Mise en place de la fenêtre
-		//this.attacherReactions(); // Ecouteurs des évènements utilisateurs
+		this.attacherReactions(); // Ecouteurs des évènements utilisateurs
 		this.init(); // Création de l'annuaire (+ des 3 WtDialog)
 		this.setSize(500, 500); // Taille de la fenêtre principale
 		this.setVisible(true); // Rendre la fenêtre visible à l'écran
@@ -141,9 +142,10 @@ public class Wintel extends JFrame {
 	}
 
 	private void attacherReactions() {
-
+		itemSauver.addActionListener(new EcouteurItemSauver(this));
+		itemCharger.addActionListener(new EcouteurItemCharger(this));
 	}
-
+	
 	public Annuaire getAnnuaire() {
 		return this.monAnnuaire;
 	}
@@ -170,7 +172,6 @@ public class Wintel extends JFrame {
 			tmpFiche = new Fiche(nom, prenom, numTel);
 			monAnnuaire.ajouter(tmpFiche.getNom(), tmpFiche);
 			DefaultListModel liste = (DefaultListModel) listeContacts.getModel();
-			System.out.println("Nom = " + tmpFiche.getNom());
 			liste.addElement(tmpFiche.getNom());
 		}
 		catch(IllegalArgumentException e) {
