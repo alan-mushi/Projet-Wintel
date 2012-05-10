@@ -184,4 +184,21 @@ public class Wintel extends JFrame {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public void chargerEtAfficherAnnuaire() {
+		Annuaire unAnnuaire = Annuaire.charger();
+		Enumeration cles = unAnnuaire.cles();
+		while(cles.hasMoreElements()) {
+			String nom = (String) cles.nextElement();
+			try {
+				Fiche fichePersonne = monAnnuaire.consulter(nom);
+				String prenom = fichePersonne.getPrenom();
+				String num = fichePersonne.getTelephone();
+				this.ajouterAbonne(nom, prenom, num);
+			}
+			catch(IllegalArgumentException erreur) {
+				System.out.println(erreur.getMessage());
+			}
+		}
+	}
 }
