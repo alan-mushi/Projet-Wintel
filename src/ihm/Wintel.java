@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import datas.Annuaire;
 import datas.Fiche;
+import java.util.Enumeration;
 
 public class Wintel extends JFrame {
 
