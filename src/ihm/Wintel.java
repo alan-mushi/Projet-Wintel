@@ -2,8 +2,7 @@ package ihm;
 
 import javax.swing.*;
 import java.awt.*;
-import datas.Annuaire;
-import datas.Fiche;
+import datas.*;
 import java.util.Enumeration;
 
 public class Wintel extends JFrame {
@@ -188,11 +187,12 @@ public class Wintel extends JFrame {
 	
 	public void chargerEtAfficherAnnuaire() {
 		Annuaire unAnnuaire = Annuaire.charger();
-		Enumeration cles = unAnnuaire.cles();
+		Enumeration<String> cles = unAnnuaire.cles();
 		while(cles.hasMoreElements()) {
-			String nom = (String) cles.nextElement();
+			String id = cles.nextElement();
 			try {
-				Fiche fichePersonne = monAnnuaire.consulter(nom);
+				Fiche fichePersonne = unAnnuaire.consulter(id);
+				String nom = fichePersonne.getNom() ;
 				String prenom = fichePersonne.getPrenom();
 				String num = fichePersonne.getTelephone();
 				this.ajouterAbonne(nom, prenom, num);
