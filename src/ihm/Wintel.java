@@ -144,6 +144,7 @@ public class Wintel extends JFrame {
 	private void attacherReactions() {
 		itemSauver.addActionListener(new EcouteurItemSauver(this));
 		itemCharger.addActionListener(new EcouteurItemCharger(this));
+		itemQuitter.addActionListener(new EcouteurItemQuitter(this));
 		listeContacts.addMouseListener(new EcouteurListeGche(this));
 	}
 	
