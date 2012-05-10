@@ -45,7 +45,7 @@ public class Wintel extends JFrame {
 
 	public static void main(String[] args) {
 		Wintel lanceur = new Wintel();
-		lanceur.ajouterAbonne("test", "test", "02586685241");
+		// lanceur.ajouterAbonne("test", "test", "02586685241");
 	}
 
 	public Wintel() {
