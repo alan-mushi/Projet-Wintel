@@ -5,6 +5,9 @@ import java.awt.*;
 import datas.*;
 import java.util.Enumeration;
 
+/**
+*
+*/
 public class Wintel extends JFrame {
 
 	// Attributs des éléments graphiques
@@ -43,11 +46,17 @@ public class Wintel extends JFrame {
 
 	private Annuaire monAnnuaire ;
 
+	/**
+	*
+	*/
 	public static void main(String[] args) {
 		Wintel lanceur = new Wintel();
 		// lanceur.ajouterAbonne("test", "test", "02586685241");
 	}
 
+	/**
+	*
+	*/
 	public Wintel() {
 		super("Wintel"); // Appel du constructeur de JFrame
 		this.creerInterface(); // Mise en place de la fenêtre
@@ -58,6 +67,9 @@ public class Wintel extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Clic sur la croix
 	}
 
+	/**
+	*
+	*/
 	private void creerInterface() {
 		//Elements de la partie "nord"
 		BorderLayout gestionnairePlacement = new BorderLayout();
@@ -137,10 +149,16 @@ public class Wintel extends JFrame {
 		setJMenuBar(menu);
 	}
 
+	/**
+	*
+	*/
 	private void init() {
 		monAnnuaire = new Annuaire();
 	}
 
+	/**
+	*
+	*/
 	private void attacherReactions() {
 		itemSauver.addActionListener(new EcouteurItemSauver(this));
 		itemCharger.addActionListener(new EcouteurItemCharger(this));
@@ -148,26 +166,44 @@ public class Wintel extends JFrame {
 		listeContacts.addMouseListener(new EcouteurListeGche(this));
 	}
 	
+	/**
+	*
+	*/
 	public Annuaire getAnnuaire() {
 		return this.monAnnuaire;
 	}
 
+	/**
+	*
+	*/
 	public JList getListeGche() {
 		return (this.listeContacts) ;
 	}
 
+	/**
+	*
+	*/
 	public JTextField getFieldNom() { 
 		return (this.nom) ;
 	}
 
+	/**
+	*
+	*/
 	public JTextField getFieldPrenom() {
 		return (this.prenom) ;
 	}
 
+	/**
+	*
+	*/
 	public JTextField getFieldNumero() {
 		return (this.numero) ;
 	}
 
+	/**
+	*
+	*/
 	public void ajouterAbonne(String nom , String prenom , String numTel) {
 		Fiche tmpFiche;
 		try {
@@ -185,6 +221,9 @@ public class Wintel extends JFrame {
 		}
 	}
 	
+	/**
+	*
+	*/
 	public void chargerEtAfficherAnnuaire() {
 		Annuaire unAnnuaire = Annuaire.charger();
 		Enumeration<String> cles = unAnnuaire.cles();

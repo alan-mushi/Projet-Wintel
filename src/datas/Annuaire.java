@@ -10,42 +10,75 @@ import java.io.ObjectOutputStream ;
 import java.io.IOException ;
 import java.io.FileNotFoundException ;
 
+/**
+*
+*/
 public class Annuaire implements java.io.Serializable {
 
+	/**
+	*
+	*/
 	private Hashtable<String , Fiche> tabFiches ;
 
+	/**
+	*
+	*/
 	public Annuaire() {
 		tabFiches = new Hashtable<String , Fiche>() ;
 	}
 
+	/**
+	*
+	*/
 	public void ajouter( String cle , Fiche personne ) throws IllegalArgumentException , Exception {
 		if ( cle == null || personne == null || cle.isEmpty() ) { throw new IllegalArgumentException( "Un des paramètres n'est pas valide." ) ; }
 		else if ( tabFiches.containsKey( cle ) ) { throw new Exception( "Clé déjà existante dans la Hashtable." ) ; }
 		tabFiches.put( cle , personne ) ;
 	}
 
+	/**
+	*
+	*/
 	public void supprimer( String cle ) throws IllegalArgumentException , Exception {
 		if ( cle == null || cle.isEmpty() ) { throw new IllegalArgumentException( "Le paramètre n'est pas valide." ) ; }
 		else if ( ! tabFiches.containsKey( cle ) ) { throw new Exception( "Clé non existante dans la Hashtable." ) ; }
 		tabFiches.remove( cle ) ;
 	}
 
+	/**
+	*
+	*/
 	public void modifier( String cle , Fiche personne ) {
 		tabFiches.remove( cle ) ;
 		tabFiches.put( cle , personne ) ;
 	}
 
+	/**
+	*
+	*/
 	public Enumeration<String> cles() { return ( tabFiches.keys() ) ; }
 
+	/**
+	*
+	*/
 	public int taille() { return ( tabFiches.size() ) ; }
 
+	/**
+	*
+	*/
 	public boolean existe( String cle ) { return ( tabFiches.containsKey( cle ) ) ; }
 
+	/**
+	*
+	*/
 	public Fiche consulter( String cle ) throws IllegalArgumentException {
 		if ( cle == null || cle.isEmpty() ) { throw new IllegalArgumentException( "Le paramètre n'est pas valide." ) ; }
 		return ( tabFiches.get( cle ) ) ;
 	}
 
+	/**
+	*
+	*/
 	public static Annuaire charger() {
 		FileInputStream in ;
 		ObjectInputStream flux ;
@@ -64,6 +97,9 @@ public class Annuaire implements java.io.Serializable {
 		return ( res ) ;
 	}
 
+	/**
+	*
+	*/
 	public void sauver() {
 		FileOutputStream out ;
 		ObjectOutputStream flux ;

@@ -7,16 +7,22 @@ import datas.* ;
 
 class EcouteurListeGche extends MouseAdapter {
 
-	// La référence sur Wintel
+	/**
+	* La référence sur Wintel
+	*/
 	private Wintel theWin;
 
-	// Constructeur : lui donner la référence sur Wintel
-	// sinon l’accès aux méthodes de Wintel est impossible.
+	/**
+	* Constructeur : lui donner la référence sur Wintel
+	* sinon l’accès aux méthodes de Wintel est impossible.
+	*/
 	public EcouteurListeGche ( Wintel monWin ) {
 		this.theWin = monWin;
 	}
 
-	// Méthode de REACTION au clic souris sur un élément de la JList
+	/**
+	* Méthode de REACTION au clic souris sur un élément de la JList
+	*/
 	public void mouseClicked ( MouseEvent e ) {
 		String cle;
 		// Accès à la JList
