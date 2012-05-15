@@ -9,7 +9,7 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 	private JLabel labelSupprimer;
 	private JTextField aSupprimer;
 	private JButton confirmer;
-	private JButton Annuler;
+	private JButton annuler;
 	private Wintel parent;
 	
 	public WtDialogSupprimer(Wintel parent) {
@@ -20,21 +20,35 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 		this.setSize(400, 400);
 		this.setVisible(false); // invisible à la création
 	}
+	
 	public void creerInterface() {
-		GridLayout gestionnairePlacement = new GridLayout(3, 1);
+		GridLayout gestionnairePlacement = new GridLayout(3, 1, 20, 20);
+		// JPanel pannelPrincipal = new JPanel();
 		this.setLayout(gestionnairePlacement);
+		// this.add(pannelPrincipal);
 		
 		labelSupprimer = new JLabel("Supprimer le contact ?");
 		this.add(labelSupprimer);
 		
 		aSupprimer = new JTextField();
 		this.add(aSupprimer);
+		
+		GridLayout gestionnaireBoutton = new GridLayout(1, 2);
+		JPanel pannelBoutton = new JPanel();
+		this.add(pannelBoutton);
+		pannelBoutton.setLayout(gestionnaireBoutton);
+		
+		confirmer = new JButton("Confirmer");
+		pannelBoutton.add(confirmer);
+		annuler = new JButton("Annuler");
+		pannelBoutton.add(annuler);
 	}
+	
 	public void attacherReactions() {
 	
 	}
+	
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Je passe par ici.");
 		this.setVisible(true);
 	}
 }
