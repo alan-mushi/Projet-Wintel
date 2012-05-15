@@ -35,6 +35,8 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 		labelSupprimer.setForeground(Color.blue);
 		labelSupprimer.setFont(new Font(null, Font.PLAIN, 18));
 		aSupprimer = new JTextField();
+		aSupprimer.setForeground(Color.blue);
+		aSupprimer.setFont(new Font(null, Font.PLAIN, 18));
 		
 		JPanel pannelPrincipal = new JPanel(new GridLayout(3, 1, 40, 40));
 		pannelPrincipal.add(labelSupprimer);
