@@ -37,7 +37,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	*
 	*/
 	private void creerInterface() {
-		labelOrdre = new JLabel( "Veillez choisir un nouveau contact dans la liste" ) ;
+		labelOrdre = new JLabel( "Veillez choisir un nouveau contact dans la liste" , SwingConstants.CENTER ) ;
 		labelNom = new JLabel( "Nom" ) ;
 		labelPrenom = new JLabel( "Prenom" ) ;
 		labelNumero = new JLabel( "Numéro de téléphone" ) ;
@@ -53,24 +53,22 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		liste = new JComboBox( vect ) ;
 		// panneau du bas
 		JPanel bas = new JPanel() ;
-		bas.setLayout( new GridLayout( 1 , 2 , 10 , 10) ) ;
+		bas.setLayout( new GridLayout( 1 , 2 ) ) ;
 		buttonAnnuler = new JButton( "Annuler" ) ;
 		buttonConfirmer = new JButton( "Confirmer" ) ;
 		bas.add( buttonConfirmer ) ;
 		bas.add( buttonAnnuler ) ;
 		// panneau central
-		JPanel main = new JPanel() ;
-		main.setLayout( new GridLayout( 9 , 1 , 10 , 10 ) ) ;
-		main.add( labelOrdre ) ;
-		main.add( liste ) ;
-		main.add( labelNom ) ;
-		main.add( txtNom ) ;
-		main.add( labelPrenom ) ;
-		main.add( txtPrenom ) ;
-		main.add( labelNumero ) ;
-		main.add( txtNumero ) ;
-		main.add( bas ) ;
-		this.add( main ) ;
+		this.setLayout( new GridLayout( 9 , 1 , 10 , 10 ) ) ;
+		this.add( labelOrdre ) ;
+		this.add( liste ) ;
+		this.add( labelNom ) ;
+		this.add( txtNom ) ;
+		this.add( labelPrenom ) ;
+		this.add( txtPrenom ) ;
+		this.add( labelNumero ) ;
+		this.add( txtNumero ) ;
+		this.add( bas ) ;
 	}
 
 	/**
