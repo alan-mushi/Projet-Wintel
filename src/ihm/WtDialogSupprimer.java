@@ -49,6 +49,7 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 	
 	public void attacherReactions() {
 		annuler.addActionListener(new EcouteurAnnulerSupprimer(this));
+		confirmer.addActionListener(new EcouteurConfirmerSuppression(this));
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -58,5 +59,9 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 			aSupprimer.setText(valeur);
 		}
 		this.setVisible(true);
+	}
+	
+	public Wintel getParent() {
+		return parent;
 	}
 }
