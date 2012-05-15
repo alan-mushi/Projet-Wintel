@@ -14,7 +14,7 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 	
 	public WtDialogSupprimer(Wintel parent) {
 		super(parent, "Supprimer un contact", true); // appel constructeur JDialog
-		//this.table = TableFiches.lireTableFiches(); // lecture des fiches disponibles
+		this.parent = parent;
 		this.creerInterface(); // mise en place du décor (voir Figure 5)
 		this.attacherReactions(); // écouteurs sur les boutons et JComboBox
 		this.setSize(300, 300);
@@ -34,6 +34,7 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 		labelSupprimer.setHorizontalAlignment(SwingConstants.CENTER);
 		labelSupprimer.setForeground(Color.blue);
 		labelSupprimer.setFont(new Font(null, Font.PLAIN, 18));
+		
 		aSupprimer = new JTextField();
 		aSupprimer.setForeground(Color.blue);
 		aSupprimer.setFont(new Font(null, Font.PLAIN, 18));
@@ -47,10 +48,15 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 	}
 	
 	public void attacherReactions() {
-	
+		annuler.addActionListener(new EcouteurAnnulerSupprimer(this));
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		JList liste = parent.getListeGche();
+		if(liste.getSelectedValue() != null) {
+			String valeur = (String) liste.getSelectedValue();
+			aSupprimer.setText(valeur);
+		}
 		this.setVisible(true);
 	}
 }
