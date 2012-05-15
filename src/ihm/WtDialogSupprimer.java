@@ -17,31 +17,31 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 		//this.table = TableFiches.lireTableFiches(); // lecture des fiches disponibles
 		this.creerInterface(); // mise en place du décor (voir Figure 5)
 		this.attacherReactions(); // écouteurs sur les boutons et JComboBox
-		this.setSize(400, 400);
+		this.setSize(300, 300);
 		this.setVisible(false); // invisible à la création
 	}
 	
 	public void creerInterface() {
-		GridLayout gestionnairePlacement = new GridLayout(3, 1, 20, 20);
-		// JPanel pannelPrincipal = new JPanel();
-		this.setLayout(gestionnairePlacement);
-		// this.add(pannelPrincipal);
-		
-		labelSupprimer = new JLabel("Supprimer le contact ?");
-		this.add(labelSupprimer);
-		
-		aSupprimer = new JTextField();
-		this.add(aSupprimer);
-		
-		GridLayout gestionnaireBoutton = new GridLayout(1, 2);
-		JPanel pannelBoutton = new JPanel();
-		this.add(pannelBoutton);
-		pannelBoutton.setLayout(gestionnaireBoutton);
-		
+		// Boutton en bas
 		confirmer = new JButton("Confirmer");
-		pannelBoutton.add(confirmer);
 		annuler = new JButton("Annuler");
+		JPanel pannelBoutton = new JPanel(new GridLayout(1, 2));
+		pannelBoutton.add(confirmer);
 		pannelBoutton.add(annuler);
+		
+		// Panel principal
+		labelSupprimer = new JLabel("Supprimer le contact ?");
+		labelSupprimer.setHorizontalAlignment(SwingConstants.CENTER);
+		labelSupprimer.setForeground(Color.blue);
+		labelSupprimer.setFont(new Font(null, Font.PLAIN, 18));
+		aSupprimer = new JTextField();
+		
+		JPanel pannelPrincipal = new JPanel(new GridLayout(3, 1, 40, 40));
+		pannelPrincipal.add(labelSupprimer);
+		pannelPrincipal.add(aSupprimer);
+		pannelPrincipal.add(pannelBoutton);
+		
+		this.add(pannelPrincipal);
 	}
 	
 	public void attacherReactions() {
