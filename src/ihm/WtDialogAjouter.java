@@ -38,12 +38,17 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	*/
 	private void creerInterface() {
 		labelOrdre = new JLabel( "Veillez choisir un nouveau contact dans la liste" , SwingConstants.CENTER ) ;
+		labelOrdre.setForeground( Color.blue ) ;
+		labelOrdre.setFont( new Font( null, Font.PLAIN, 16 ) ) ;
 		labelNom = new JLabel( "Nom" ) ;
 		labelPrenom = new JLabel( "Prenom" ) ;
 		labelNumero = new JLabel( "Numéro de téléphone" ) ;
 		txtNom = new JTextField() ;
+		txtNom.setForeground( Color.blue ) ;
 		txtPrenom = new JTextField() ;
+		txtPrenom.setForeground( Color.blue ) ;
 		txtNumero = new JTextField() ;
+		txtNumero.setForeground( Color.blue ) ;
 		// création d'un Vector<String> pour JComboBox
 		Vector<String> vect = new Vector<String>( table.size() ) ;
 		Enumeration<String> enu = table.keys() ;
@@ -69,6 +74,8 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		this.add( labelNumero ) ;
 		this.add( txtNumero ) ;
 		this.add( bas ) ;
+
+		this.fillFields() ;
 	}
 
 	/**
@@ -96,12 +103,19 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 			this.setVisible( false ) ;
 		}
 		else if ( src == liste ) {
-			String cle = String.valueOf( liste.getSelectedItem() ) ;
-			Fiche tmpFiche = table.get( cle ) ;
-			txtNom.setText( tmpFiche.getNom() ) ;
-			txtPrenom.setText( tmpFiche.getPrenom() ) ;
-			txtNumero.setText( tmpFiche.getTelephone() ) ;
+			this.fillFields() ;
 		}
 		else { this.setVisible( true ) ; }
+	}
+
+	/**
+	*
+	*/
+	private void fillFields() {
+		String cle = String.valueOf( liste.getSelectedItem() ) ;
+		Fiche tmpFiche = table.get( cle ) ;
+		txtNom.setText( tmpFiche.getNom() ) ;
+			txtPrenom.setText( tmpFiche.getPrenom() ) ;
+			txtNumero.setText( tmpFiche.getTelephone() ) ;	
 	}
 }
