@@ -43,6 +43,9 @@ public class Wintel extends JFrame {
 	private JLabel titreCaracteristiques;
 	private JLabel titreAbonnes;
 	private JList listeContacts;
+	
+	//Fenêtres
+	private WtDialogSupprimer supprimerContact;
 
 	private Annuaire monAnnuaire ;
 
@@ -60,8 +63,8 @@ public class Wintel extends JFrame {
 	public Wintel() {
 		super("Wintel"); // Appel du constructeur de JFrame
 		this.creerInterface(); // Mise en place de la fenêtre
-		this.attacherReactions(); // Ecouteurs des évènements utilisateurs
 		this.init(); // Création de l'annuaire (+ des 3 WtDialog)
+		this.attacherReactions(); // Ecouteurs des évènements utilisateurs
 		this.setSize(500, 500); // Taille de la fenêtre principale
 		this.setVisible(true); // Rendre la fenêtre visible à l'écran
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Clic sur la croix
@@ -154,6 +157,7 @@ public class Wintel extends JFrame {
 	*/
 	private void init() {
 		monAnnuaire = new Annuaire();
+		supprimerContact = new WtDialogSupprimer(this);
 	}
 
 	/**
@@ -164,6 +168,7 @@ public class Wintel extends JFrame {
 		itemCharger.addActionListener(new EcouteurItemCharger(this));
 		itemQuitter.addActionListener(new EcouteurItemQuitter(this));
 		listeContacts.addMouseListener(new EcouteurListeGche(this));
+		itemSupprimer.addActionListener(supprimerContact);
 	}
 	
 	/**
