@@ -15,10 +15,10 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 	public WtDialogSupprimer(Wintel parent) {
 		super(parent, "Supprimer un contact", true); // appel constructeur JDialog
 		//this.table = TableFiches.lireTableFiches(); // lecture des fiches disponibles
-		this.creerInterface(); // mise en place du décor (voir Figure 5)
-		this.attacherReactions(); // écouteurs sur les boutons et JComboBox
+		this.creerInterface(); // mise en place du dÃ©cor (voir Figure 5)
+		this.attacherReactions(); // Ã©couteurs sur les boutons et JComboBox
 		this.setSize(400, 400);
-		this.setVisible(false); // invisible à la création
+		this.setVisible(false); // invisible Ã  la crÃ©ation
 	}
 	
 	public void creerInterface() {

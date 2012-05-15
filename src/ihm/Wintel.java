@@ -150,6 +150,8 @@ public class Wintel extends JFrame {
 		menuAide.add(itemAide);
 
 		setJMenuBar(menu);
+	
+		this.setLocationByPlatform( true ) ;
 	}
 
 	/**
@@ -158,7 +160,7 @@ public class Wintel extends JFrame {
 	private void init() {
 		monAnnuaire = new Annuaire();
 		supprimerContact = new WtDialogSupprimer(this);
-		// dialogAj = new WtDialogAjouter( this ) ;
+		ajouterContact = new WtDialogAjouter( this ) ;
 	}
 
 	/**
@@ -170,7 +172,7 @@ public class Wintel extends JFrame {
 		itemQuitter.addActionListener(new EcouteurItemQuitter(this));
 		listeContacts.addMouseListener(new EcouteurListeGche(this));
 		itemSupprimer.addActionListener(supprimerContact);
-		// itemAjouter.addActionListener ( new EcouteurItemAjouter( this ) ) ;
+		itemAjouter.addActionListener( ajouterContact ) ;
 	}
 	
 	/**

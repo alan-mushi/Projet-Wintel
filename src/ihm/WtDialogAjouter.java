@@ -5,18 +5,20 @@ import java.util.Vector ;
 import java.util.Enumeration ;
 import datas.* ;
 import java.awt.* ;
+import java.awt.event.* ;
 import javax.swing.* ;
 
 /**
 *
 */
-public class WtDialogAjouter extends JDialog {
+public class WtDialogAjouter extends JDialog implements ActionListener {
 
 	private JLabel labelOrdre, labelNom, labelPrenom, labelNumero ;
 	private JComboBox liste ;
 	private JTextField txtNom, txtPrenom, txtNumero ;
 	private JButton buttonConfirmer, buttonAnnuler ;
 	private Hashtable<String, Fiche> table ;
+	private Wintel theWin ;
 
 	/**
 	*
@@ -28,6 +30,7 @@ public class WtDialogAjouter extends JDialog {
 		this.attacherReactions(); // écouteurs sur les boutons et JComboBox
 		this.setSize( 400, 400 );
 		this.setVisible( false ); // invisible à la création
+		this.theWin = theWin ;
 	}
 
 	/**
@@ -50,14 +53,14 @@ public class WtDialogAjouter extends JDialog {
 		liste = new JComboBox( vect ) ;
 		// panneau du bas
 		JPanel bas = new JPanel() ;
-		bas.setLayout( new GridLayout( 1 , 2 ) ) ;
+		bas.setLayout( new GridLayout( 1 , 2 , 10 , 10) ) ;
 		buttonAnnuler = new JButton( "Annuler" ) ;
 		buttonConfirmer = new JButton( "Confirmer" ) ;
-		bas.add( buttonAnnuler ) ;
 		bas.add( buttonConfirmer ) ;
+		bas.add( buttonAnnuler ) ;
 		// panneau central
 		JPanel main = new JPanel() ;
-		main.setLayout( new GridLayout( 9 , 1 ) ) ;
+		main.setLayout( new GridLayout( 9 , 1 , 10 , 10 ) ) ;
 		main.add( labelOrdre ) ;
 		main.add( liste ) ;
 		main.add( labelNom ) ;
@@ -74,6 +77,33 @@ public class WtDialogAjouter extends JDialog {
 	*
 	*/
 	private void attacherReactions() {
+		buttonConfirmer.addActionListener( this ) ;
+		buttonAnnuler.addActionListener( this ) ;
+		liste.addActionListener( this ) ;
+	}
 
+	/**
+	*
+	*/
+	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource() ;
+		if ( src == buttonAnnuler ) { this.setVisible( false ) ; }
+		else if ( src == buttonConfirmer ) {
+			String tmpNom, tmpPrenom, tmpNum ;
+			tmpNom = txtNom.getText() ;
+			tmpPrenom = txtPrenom.getText() ;
+			tmpNum = txtNumero.getText() ;
+			theWin.ajouterAbonne( tmpNom, tmpPrenom, tmpNum ) ;
+			theWin.getAnnuaire().sauver() ;
+			this.setVisible( false ) ;
+		}
+		else if ( src == liste ) {
+			String cle = String.valueOf( liste.getSelectedItem() ) ;
+			Fiche tmpFiche = table.get( cle ) ;
+			txtNom.setText( tmpFiche.getNom() ) ;
+			txtPrenom.setText( tmpFiche.getPrenom() ) ;
+			txtNumero.setText( tmpFiche.getTelephone() ) ;
+		}
+		else { this.setVisible( true ) ; }
 	}
 }

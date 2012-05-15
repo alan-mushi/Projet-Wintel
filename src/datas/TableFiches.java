@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 import java.io.IOException; 
+import java.io.FileNotFoundException ;
 
 public class TableFiches {
 
@@ -34,7 +35,7 @@ public class TableFiches {
 				else { System.out.println("Impossible de lire l'objet contenu dans le fichier."); }
 			} while ( resultat != null ) ;
 		}
-		catch ( FileNotFoundException e ) {
+		catch (FileNotFoundException e) {
 			System.out.println( e.getMessage() ) ;
 			/*
 			* Ouvrir une fenêtre contenant le mm txt.
