@@ -32,11 +32,11 @@ class EcouteurListeGche extends MouseAdapter {
 		int index = maListe.locationToIndex(e.getPoint());
 		// Récupération du tableau qui mémorise les éléments de la JList
 		DefaultListModel tab = (DefaultListModel)( maListe.getModel());
-		/* 
+		
+/* 
 		 * Ce test permet de ne pas afficher d'exceptions si l'utilisateur 
 		 * clique à coté d'un item.
 		 */
-		System.out.println( "[-] Index = " + index ) ;
 		if ( index >= 0 && index <= tab.capacity() )  {
 			// L’index correspond précisément à la case du tableau contenant la donnée
 			// sélectionnée par l’utilisateur avec la souris
