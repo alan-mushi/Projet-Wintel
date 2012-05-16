@@ -33,6 +33,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 			this.table = TableFiches.lireTableFiches(); // lecture des fiches disponibles
 			this.creerInterface(); // mise en place du décor (voir Figure 5)
 			this.attacherReactions(); // écouteurs sur les boutons et JComboBox
+			buttonAnnuler.addActionListener( this ) ;
 		}
 		catch ( NullPointerException e ) {
 			/*
@@ -42,6 +43,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 			 */
 			WtDialogAjouterTableBin erreurTableBin = new WtDialogAjouterTableBin() ;
 			this.creeInterfaceAlternative() ;
+			buttonAnnuler.addActionListener( this ) ;
 			this.setVisible( false ) ;
 		}
 
@@ -99,7 +101,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	 *
 	 */
 	private void creeInterfaceAlternative() {
-		labelOrdre = new JLabel( "L\'ajout est impossible en raison des erreurs précedentes." ) ;
+		labelOrdre = new JLabel( "L\'ajout est impossible en raison des erreurs précedentes." , SwingConstants.CENTER ) ;
 		labelOrdre.setForeground( Color.blue ) ;
 		buttonAnnuler = new JButton( "Retour" ) ;
 		this.setLayout( new GridLayout( 2 , 1 ) ) ;
@@ -107,17 +109,12 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		this.add( buttonAnnuler ) ;
 		this.setSize( 500, 200 );
 		this.alternate = true ;
-		/*
-		* Ligne à finit + link élément
-		*/
-		this.addActionListener( buttonAnnuler ) ;
 	}
 
 	/**
 	 *
 	 */
 	private void attacherReactions() {
-		buttonAnnuler.addActionListener( this ) ;
 		if ( this.alternate == false ) {
 			buttonConfirmer.addActionListener( this ) ;
 			liste.addActionListener( this ) ;
