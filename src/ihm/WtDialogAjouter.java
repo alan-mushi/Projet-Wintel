@@ -9,8 +9,8 @@ import java.awt.event.* ;
 import javax.swing.* ;
 
 /**
-*
-*/
+ *
+ */
 public class WtDialogAjouter extends JDialog implements ActionListener {
 
 	private JLabel labelOrdre, labelNom, labelPrenom, labelNumero ;
@@ -19,24 +19,39 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	private JButton buttonConfirmer, buttonAnnuler ;
 	private Hashtable<String, Fiche> table ;
 	private Wintel theWin ;
+	private boolean alternate ;
 
 	/**
-	*
-	*/
+	 *
+	 */
 	public WtDialogAjouter( Wintel theWin ) {
 		super( theWin, "Ajouter un nouveau contact", true ); // appel constructeur JDialog
-		this.table = TableFiches.lireTableFiches(); // lecture des fiches disponibles
-		this.creerInterface(); // mise en place du décor (voir Figure 5)
-		this.attacherReactions(); // écouteurs sur les boutons et JComboBox
-		this.setSize( 400, 400 );
 		this.setVisible( false ); // invisible à la création
 		this.theWin = theWin ;
+		this.setLocationByPlatform( true ) ;
+		try {
+			this.table = TableFiches.lireTableFiches(); // lecture des fiches disponibles
+			this.creerInterface(); // mise en place du décor (voir Figure 5)
+			this.attacherReactions(); // écouteurs sur les boutons et JComboBox
+		}
+		catch ( NullPointerException e ) {
+			/*
+			 * Gère l'exception lancée par TableFiches si 'table.bin' n'est pas présent.
+			 * Ouvertre d'une fenêtre pour indiquer à l'utilisateur
+			 * que le fichier 'table.bin' n'a pas été trouvé.
+			 */
+			WtDialogAjouterTableBin erreurTableBin = new WtDialogAjouterTableBin() ;
+			this.creeInterfaceAlternative() ;
+			this.setVisible( false ) ;
+		}
+
 	}
 
 	/**
-	*
-	*/
+	 *
+	 */
 	private void creerInterface() {
+		this.setSize( 400, 400 );
 		labelOrdre = new JLabel( "Veillez choisir un nouveau contact dans la liste" , SwingConstants.CENTER ) ;
 		labelOrdre.setForeground( Color.blue ) ;
 		labelOrdre.setFont( new Font( null, Font.PLAIN, 16 ) ) ;
@@ -76,20 +91,42 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		this.add( bas ) ;
 
 		this.fillFields() ;
+
+		this.alternate = false ;
 	}
 
 	/**
-	*
-	*/
+	 *
+	 */
+	private void creeInterfaceAlternative() {
+		labelOrdre = new JLabel( "L\'ajout est impossible en raison des erreurs précedentes." ) ;
+		labelOrdre.setForeground( Color.blue ) ;
+		buttonAnnuler = new JButton( "Retour" ) ;
+		this.setLayout( new GridLayout( 2 , 1 ) ) ;
+		this.add( labelOrdre ) ;
+		this.add( buttonAnnuler ) ;
+		this.setSize( 500, 200 );
+		this.alternate = true ;
+		/*
+		* Ligne à finit + link élément
+		*/
+		this.addActionListener( buttonAnnuler ) ;
+	}
+
+	/**
+	 *
+	 */
 	private void attacherReactions() {
-		buttonConfirmer.addActionListener( this ) ;
 		buttonAnnuler.addActionListener( this ) ;
-		liste.addActionListener( this ) ;
+		if ( this.alternate == false ) {
+			buttonConfirmer.addActionListener( this ) ;
+			liste.addActionListener( this ) ;
+		}
 	}
 
 	/**
-	*
-	*/
+	 *
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource() ;
 		if ( src == buttonAnnuler ) { this.setVisible( false ) ; }
@@ -109,13 +146,13 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	}
 
 	/**
-	*
-	*/
+	 *
+	 */
 	private void fillFields() {
 		String cle = String.valueOf( liste.getSelectedItem() ) ;
 		Fiche tmpFiche = table.get( cle ) ;
 		txtNom.setText( tmpFiche.getNom() ) ;
-			txtPrenom.setText( tmpFiche.getPrenom() ) ;
-			txtNumero.setText( tmpFiche.getTelephone() ) ;	
+		txtPrenom.setText( tmpFiche.getPrenom() ) ;
+		txtNumero.setText( tmpFiche.getTelephone() ) ;	
 	}
 }
