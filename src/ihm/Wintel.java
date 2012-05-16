@@ -108,10 +108,13 @@ public class Wintel extends JFrame {
 
 		labNom = new JLabel("Nom");
 		nom = new JTextField();
+		nom.setForeground( Color.blue ) ;
 		labPrenom = new JLabel("Prénom");
 		prenom = new JTextField();
+		prenom.setForeground( Color.blue ) ;
 		labNumero = new JLabel("Numéro");
 		numero = new JTextField();
+		numero.setForeground( Color.blue ) ;
 		composer = new JButton("Composer");
 		panelCaract.add(labNom);
 		panelCaract.add(nom);
