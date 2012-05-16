@@ -24,7 +24,7 @@ class EcouteurConfirmerSuppression implements ActionListener {
 	*
 	*/
 	public void actionPerformed(ActionEvent e) {
-		/*Wintel windowMain = fenetreSupprimer.getParent();
+		Wintel windowMain = fenetreSupprimer.getParent();
 		Annuaire monAnnuaire = windowMain.getAnnuaire();
 		
 		JList liste = windowMain.getListeGche();
@@ -52,6 +52,6 @@ class EcouteurConfirmerSuppression implements ActionListener {
 		catch(Exception erreur) {
 			
 		}
-		fenetreSupprimer.setVisible(false);*/
+		fenetreSupprimer.setVisible(false);
 	}
 }
