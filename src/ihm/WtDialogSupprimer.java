@@ -39,10 +39,16 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 		aSupprimer.setForeground(Color.blue);
 		aSupprimer.setFont(new Font(null, Font.PLAIN, 18));
 		
-		BorderLayout gestionnaireCentre = new BorderLayout(40, 40);
-		JPanel panelCentre = new JPanel(new GridLayout(3, 1));
+		BorderLayout gestionnaireCentre = new BorderLayout(20, 20);
+		JPanel panelCentre = new JPanel(new GridLayout(3, 1, 0, 20));
+		JPanel panelGauche = new JPanel();
+		JPanel panelDroit = new JPanel();
+		JPanel panelBas = new JPanel();
 		this.setLayout(gestionnaireCentre);
 		this.add(panelCentre, BorderLayout.CENTER);
+		this.add(panelGauche, BorderLayout.WEST);
+		this.add(panelDroit, BorderLayout.EAST);
+		this.add(panelBas, BorderLayout.SOUTH);
 		
 		panelCentre.add(labelSupprimer);
 		panelCentre.add(aSupprimer);
