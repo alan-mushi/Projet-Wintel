@@ -49,6 +49,7 @@ public class Wintel extends JFrame {
 	private WtDialogSupprimer supprimerContact;
 	private WtDialogAjouter ajouterContact ;
 	private Annuaire monAnnuaire ;
+	private DialogText aideApp ;
 
 	/**
 	*
@@ -165,6 +166,7 @@ public class Wintel extends JFrame {
 		monAnnuaire = new Annuaire();
 		supprimerContact = new WtDialogSupprimer(this);
 		ajouterContact = new WtDialogAjouter( this ) ;
+		aideApp = new DialogText( this ) ;
 	}
 
 	/**
@@ -177,6 +179,7 @@ public class Wintel extends JFrame {
 		listeContacts.addMouseListener(new EcouteurListeGche(this));
 		itemSupprimer.addActionListener(supprimerContact);
 		itemAjouter.addActionListener( ajouterContact ) ;
+		itemAide.addActionListener( aideApp ) ;
 	}
 	
 	/**
@@ -214,8 +217,18 @@ public class Wintel extends JFrame {
 		return (this.numero) ;
 	}
 	
+	/**
+	*
+	*/
 	public DefaultListModel getListe() {
 		return this.liste;
+	}
+
+	/**
+	*
+	*/
+	public JMenuItem getItemAide() {
+		return ( this.itemAide ) ;
 	}
 
 	/**
