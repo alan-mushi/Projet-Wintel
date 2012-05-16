@@ -25,9 +25,9 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 		// Boutton en bas
 		confirmer = new JButton("Confirmer");
 		annuler = new JButton("Annuler");
-		JPanel pannelBoutton = new JPanel(new GridLayout(1, 2));
-		pannelBoutton.add(confirmer);
-		pannelBoutton.add(annuler);
+		JPanel panelBoutton = new JPanel(new GridLayout(1, 2));
+		panelBoutton.add(confirmer);
+		panelBoutton.add(annuler);
 		
 		// Panel principal
 		labelSupprimer = new JLabel("Supprimer le contact ?");
@@ -39,12 +39,12 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 		aSupprimer.setForeground(Color.blue);
 		aSupprimer.setFont(new Font(null, Font.PLAIN, 18));
 		
-		BorderLayout gestionnaireCentre = new BorderLayout(20, 20);
+		BorderLayout gestionnairePlacement = new BorderLayout(20, 20);
 		JPanel panelCentre = new JPanel(new GridLayout(3, 1, 0, 20));
 		JPanel panelGauche = new JPanel();
 		JPanel panelDroit = new JPanel();
 		JPanel panelBas = new JPanel();
-		this.setLayout(gestionnaireCentre);
+		this.setLayout(gestionnairePlacement);
 		this.add(panelCentre, BorderLayout.CENTER);
 		this.add(panelGauche, BorderLayout.WEST);
 		this.add(panelDroit, BorderLayout.EAST);
@@ -52,7 +52,7 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 		
 		panelCentre.add(labelSupprimer);
 		panelCentre.add(aSupprimer);
-		panelCentre.add(pannelBoutton);
+		panelCentre.add(panelBoutton);
 	}
 	
 	public void attacherReactions() {
