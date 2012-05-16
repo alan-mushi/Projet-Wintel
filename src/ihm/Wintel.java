@@ -43,6 +43,7 @@ public class Wintel extends JFrame {
 	private JLabel titreCaracteristiques;
 	private JLabel titreAbonnes;
 	private JList listeContacts;
+	private	DefaultListModel liste;
 	
 	//Fenêtres
 	private WtDialogSupprimer supprimerContact;
@@ -212,6 +213,10 @@ public class Wintel extends JFrame {
 	public JTextField getFieldNumero() {
 		return (this.numero) ;
 	}
+	
+	public DefaultListModel getListe() {
+		return this.liste;
+	}
 
 	/**
 	*
@@ -221,7 +226,7 @@ public class Wintel extends JFrame {
 		try {
 			tmpFiche = new Fiche(nom, prenom, numTel);
 			monAnnuaire.ajouter(tmpFiche.getNom(), tmpFiche);
-			DefaultListModel liste = (DefaultListModel) listeContacts.getModel();
+			liste = (DefaultListModel) listeContacts.getModel();
 			liste.addElement(tmpFiche.getNom());
 		}
 		catch(IllegalArgumentException e) {

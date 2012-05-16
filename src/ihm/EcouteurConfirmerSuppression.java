@@ -24,28 +24,34 @@ class EcouteurConfirmerSuppression implements ActionListener {
 	*
 	*/
 	public void actionPerformed(ActionEvent e) {
-		Wintel windowMain = fenetreSupprimer.getParent();
+		/*Wintel windowMain = fenetreSupprimer.getParent();
 		Annuaire monAnnuaire = windowMain.getAnnuaire();
 		
 		JList liste = windowMain.getListeGche();
 		
 		String valeur = null;
-		if(liste.getSelectedValue() != null) {
-			valeur = (String) liste.getSelectedValue();
-		}
+		try {
+			if(liste.getSelectedValue() != null && !liste.getSelectedValue().toString().isEmpty()) {
+				valeur = (String) liste.getSelectedValue();
 		
-		if(monAnnuaire.existe(valeur)) {
-			try {
-				monAnnuaire.supprimer(valeur);
-			}
-			catch(IllegalArgumentException erreur) {
-				System.out.println(erreur.getMessage());
-			}
-			catch(Exception erreur) {
-				System.out.println(erreur.getMessage());
+				if(monAnnuaire.existe(valeur)) {
+					try {
+						monAnnuaire.supprimer(valeur);
+						DefaultListModel recupListe = windowMain.getListe();
+						recupListe.removeElement(valeur);
+					}
+					catch(IllegalArgumentException erreur) {
+						System.out.println(erreur.getMessage());
+					}
+					catch(Exception erreur) {
+						System.out.println(erreur.getMessage());
+					}
+				}
 			}
 		}
-		
-		fenetreSupprimer.setVisible(false);
+		catch(Exception erreur) {
+			
+		}
+		fenetreSupprimer.setVisible(false);*/
 	}
 }
