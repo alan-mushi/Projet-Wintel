@@ -9,26 +9,40 @@ import java.awt.event.* ;
 import javax.swing.* ;
 
 /**
- *
+ * Cette classe permet l'ajout de contacts dans l'annuaire de Wintel
+ * depuis le fichier <code>table.bin</code>.<br />
+ * Un mécanisme de vérification et d'alerte à été mis en place pour
+ * l'utilisateur. Ainsi, la fenêtre d'ajout des contacts va se
+ * comporter différament si le fichier <code>table.bin</code> est présent ou
+ * non dans le répertoire courant.
  */
 public class WtDialogAjouter extends JDialog implements ActionListener {
 
+	// attributs graphiques
 	private JLabel labelOrdre, labelNom, labelPrenom, labelNumero ;
 	private JComboBox liste ;
 	private JTextField txtNom, txtPrenom, txtNumero ;
 	private JButton buttonConfirmer, buttonAnnuler ;
+
+	// misc
 	private Hashtable<String, Fiche> table ;
 	private Wintel theWin ;
-	private boolean alternate ;
+	private boolean alternate ;	// utilisé pour tester la présence du fichier table.bin
 
 	/**
-	 *
+	 * Ce constructeur permet de coordonner les diverses méthodes suivantes.
+	 * @param theWin Objet Wintel, utilisé pour l'ajout du contact.
 	 */
 	public WtDialogAjouter( Wintel theWin ) {
 		super( theWin, "Ajouter un nouveau contact", true ); // appel constructeur JDialog
 		this.setVisible( false ); // invisible à la création
 		this.theWin = theWin ;
 		this.setLocationByPlatform( true ) ;
+		/* 
+		 * L'action sur le bouton annuler est ajouté dans les deux cas par le code qui suit.
+		 * L'action ne s'effectuait pas si il était initialisé dans les méthodes
+		 * creerInterface() et creeInterfaceAlternative().
+		 */
 		try {
 			this.table = TableFiches.lireTableFiches(); // lecture des fiches disponibles
 			this.creerInterface(); // mise en place du décor (voir Figure 5)
@@ -50,7 +64,8 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	}
 
 	/**
-	 *
+	 * Cette méthode dispose les éléments graphiques "normalement".
+	 * Donc uniquement si la lecture du fichier <code>table.bin</code> a réussi.
 	 */
 	private void creerInterface() {
 		this.setSize( 400, 400 );
@@ -92,13 +107,15 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		this.add( txtNumero ) ;
 		this.add( bas ) ;
 
-		this.fillFields() ;
+		this.fillFields() ;	// remplit les champs avec le contact sélectionné.
 
 		this.alternate = false ;
 	}
 
 	/**
-	 *
+	 * Utile dans le cas où le fichier <code>table.bin</code> n'est
+	 * pas dans le répertoire courant.<br />Fait passer la fenêtre
+	 * d'ajout de contacts en fenêtre d'erreur.
 	 */
 	private void creeInterfaceAlternative() {
 		labelOrdre = new JLabel( "L\'ajout est impossible en raison des erreurs précedentes." , SwingConstants.CENTER ) ;
@@ -112,7 +129,8 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	}
 
 	/**
-	 *
+	 * Cette méthode est utilisée si le fichier <code>table.bin</code>
+	 * est dans le répertoire courant.
 	 */
 	private void attacherReactions() {
 		if ( this.alternate == false ) {
@@ -122,11 +140,13 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	}
 
 	/**
-	 *
+	 * Cette méthode gère les actions sur les boutons.
+	 * Principalement les actions d'ouverture et de fermerture de la fenêtre.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource() ;
 		if ( src == buttonAnnuler ) { this.setVisible( false ) ; }
+		// ajoute l'abonné dans l'annuaire de Wintel.
 		else if ( src == buttonConfirmer ) {
 			String tmpNom, tmpPrenom, tmpNum ;
 			tmpNom = txtNom.getText() ;
@@ -143,7 +163,8 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	}
 
 	/**
-	 *
+	 * Cette méthode remplit les divers champs correspondant
+	 * au contact sélectionné.
 	 */
 	private void fillFields() {
 		String cle = String.valueOf( liste.getSelectedItem() ) ;
