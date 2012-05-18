@@ -11,8 +11,9 @@ import java.awt.event.* ;
  */
 public class WtDialogAjouterTableBin extends JDialog implements ActionListener {
 
-	// attributs graphiques
+	/** Attributs graphiques. */
 	private JLabel txtError1, txtError2 ;
+	/** Attributs graphiques. */
 	private JButton retour ;
 
 	/**

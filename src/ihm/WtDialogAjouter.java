@@ -18,16 +18,21 @@ import javax.swing.* ;
  */
 public class WtDialogAjouter extends JDialog implements ActionListener {
 
-	// attributs graphiques
+	/** Attributs graphiques. */
 	private JLabel labelOrdre, labelNom, labelPrenom, labelNumero ;
+	/** Attributs graphiques. */
 	private JComboBox liste ;
+	/** Attributs graphiques. */
 	private JTextField txtNom, txtPrenom, txtNumero ;
+	/** Attributs graphiques. */
 	private JButton buttonConfirmer, buttonAnnuler ;
 
-	// misc
+	/** Attribut utilisé localement. */
 	private Hashtable<String, Fiche> table ;
+	/** Objet Wintel "privé". */
 	private Wintel theWin ;
-	private boolean alternate ;	// utilisé pour tester la présence du fichier table.bin
+	/** Utilisé pour tester la présence du fichier <code>table.bin</code>. */
+	private boolean alternate ;
 
 	/**
 	 * Ce constructeur permet de coordonner les diverses méthodes suivantes.
