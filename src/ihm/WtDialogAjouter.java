@@ -50,7 +50,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		 */
 		try {
 			this.table = TableFiches.lireTableFiches(); // lecture des fiches disponibles
-			this.creerInterface(); // mise en place du décor (voir Figure 5)
+			this.creerInterface(); // mise en place du décor (voir Figure 4)
 			this.attacherReactions(); // écouteurs sur les boutons et JComboBox
 			buttonAnnuler.addActionListener( this ) ;
 		}

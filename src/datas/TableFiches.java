@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 import java.io.IOException; 
 import java.io.FileNotFoundException ;
+import java.io.EOFException ;
 
 /**
  * Cette classe possède une unique méthode qui extrait les
@@ -47,8 +48,13 @@ public class TableFiches {
 		catch (FileNotFoundException e) {
 			System.out.println( e.getMessage() ) ;
 		}
+		catch ( EOFException e ) {
+			/*
+			* Il faut voir si on peut pas gérer la fin du fichier plus proprement...
+			*/
+		}
 		catch(IOException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage() );
 		}
 		catch(ClassNotFoundException e) {
 			System.out.println(e.getMessage());
