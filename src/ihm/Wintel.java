@@ -44,6 +44,8 @@ public class Wintel extends JFrame {
 	private DialogText aideApp ;
 	/** Annuaire local. */
 	private Annuaire monAnnuaire ;
+	/** Fenêtre de dialogue. */
+	private WtDialogModifier modifierContact ;
 
 	/**
 	 * Lanceur de Wintel, cette méthode se contente de créer un nouvel objet Wintel.
@@ -169,6 +171,7 @@ public class Wintel extends JFrame {
 		supprimerContact = new WtDialogSupprimer(this);
 		ajouterContact = new WtDialogAjouter( this ) ;
 		aideApp = new DialogText( this ) ;
+		modifierContact = new WtDialogModifier( this ) ;
 	}
 
 	/**
@@ -183,6 +186,7 @@ public class Wintel extends JFrame {
 		itemSupprimer.addActionListener(supprimerContact);
 		itemAjouter.addActionListener( ajouterContact ) ;
 		itemAide.addActionListener( aideApp ) ;
+		itemModifier.addActionListener( modifierContact ) ;
 	}
 
 	/**

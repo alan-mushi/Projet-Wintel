@@ -2,11 +2,12 @@ package ihm;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * Cette classe gère la fenêtre de modification d'un contact.
  */
-public class WtDialogModifier extends JDialog {
+public class WtDialogModifier extends JDialog implements ActionListener {
 
 	/** Attribut graphique. */
 	private JLabel labelTitre, labelNom, labelPrenom, labelNum;
@@ -24,10 +25,15 @@ public class WtDialogModifier extends JDialog {
 	public WtDialogModifier(Wintel parent) {
 		this.parent = parent;
 		this.creerInterface();
+		bouttonConfirmer.addActionListener( this ) ;
+		bouttonAnnuler.addActionListener( this ) ;
+		this.setSize( 400 , 400 ) ;
+		this.setLocationByPlatform( true ) ;
+		this.setVisible( false ) ;
 	}
 
 	/**
-	 *
+	 * Dispose les attributs graphiques.
 	 */
 	private void creerInterface() {
 		//Boutton en bas
@@ -38,7 +44,7 @@ public class WtDialogModifier extends JDialog {
 		panelBoutton.add(bouttonAnnuler);
 
 		//Panel principal
-		labelTitre = new JLabel("Contact à modifier (nom inchangé)");
+		labelTitre = new JLabel("Contact à modifier (nom figé)");
 		labelTitre.setHorizontalAlignment(SwingConstants.CENTER);
 		labelTitre.setForeground(Color.blue);
 
@@ -71,6 +77,19 @@ public class WtDialogModifier extends JDialog {
 		panelCentre.add(num);
 		panelCentre.add(panelBoutton);
 
-		this.setVisible( true ) ;
+	}
+
+	/**
+	 * Gestion en local des évènements
+	 */
+	public void actionPerformed( ActionEvent e ) {
+		Object src = e.getSource() ;
+		if ( src == bouttonConfirmer ) {
+
+		}
+		else if (src == bouttonAnnuler ) {
+			this.setVisible( false ) ;
+		}
+		else { this.setVisible( true ) ; }
 	}
 }

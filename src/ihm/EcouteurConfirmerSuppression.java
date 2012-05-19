@@ -53,7 +53,7 @@ class EcouteurConfirmerSuppression implements ActionListener {
 			}
 		}
 		catch(Exception erreur) {
-
+			System.out.println( erreur.getMessage() ) ;
 		}
 		fenetreSupprimer.setVisible(false);
 	}

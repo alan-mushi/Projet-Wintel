@@ -93,7 +93,7 @@ public class DialogText extends JDialog implements ActionListener {
 	 * on distingue la source de l'action.
 	 * @param e Origine de l'action.
 	 */
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed( ActionEvent e ) {
 		Object src = e.getSource() ;
 		// Origine : menu - aide de Wintel
 		if ( src == win.getItemAide() ) {
