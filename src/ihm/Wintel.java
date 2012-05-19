@@ -21,8 +21,10 @@ public class Wintel extends JFrame {
 	/** Bouton. */
 	private JButton composer;
 
+	/** Barre des menus. */
+	private JMenuBar menu;
 	/** Menu. */
-	private JMenuBar menu, menuFichier, menuAbonnes, menuAide;
+	private JMenu menuFichier, menuAbonnes, menuAide;
 
 	/** Item du menu. */
 	private JMenuItem itemCharger, itemSauver, itemQuitter, itemAjouter, itemModifier, itemSupprimer, itemAide;
