@@ -53,7 +53,7 @@ public class Fiche implements java.io.Serializable {
 	public String toString() {
 		String res = "---------------------\nNom : " + this.nom ;
 		res += "\nPrenom : " + this.prenom ;
-		res += "\nTelephone : " + this.telephone + "\n---------------------" ;
+		res += "\nTelephone : " + this.telephone + "\n---------------------\n" ;
 		return ( res ) ;
 	}
 }
