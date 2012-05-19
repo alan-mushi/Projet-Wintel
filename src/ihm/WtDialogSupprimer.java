@@ -15,7 +15,7 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 	public WtDialogSupprimer(Wintel parent) {
 		super(parent, "Supprimer un contact", true); // appel constructeur JDialog
 		this.parent = parent;
-		this.creerInterface(); // mise en place du décor (voir Figure 5)
+		this.creerInterface(); // mise en place du décor
 		this.attacherReactions(); // écouteurs sur les boutons et JComboBox
 		this.setSize(300, 300);
 		this.setVisible(false); // invisible à la création
@@ -37,6 +37,8 @@ public class WtDialogSupprimer  extends JDialog implements ActionListener {
 		
 		aSupprimer = new JTextField();
 		aSupprimer.setForeground(Color.blue);
+		aSupprimer.setEditable( false ) ;
+		aSupprimer.setBackground( Color.white ) ;
 		aSupprimer.setFont(new Font(null, Font.PLAIN, 18));
 		
 		BorderLayout gestionnairePlacement = new BorderLayout(20, 20);

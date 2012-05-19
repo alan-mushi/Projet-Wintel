@@ -39,6 +39,9 @@ class EcouteurConfirmerSuppression implements ActionListener {
 						monAnnuaire.supprimer(valeur);
 						DefaultListModel recupListe = windowMain.getListe();
 						recupListe.removeElement(valeur);
+						// Retire la cle des champs de droite 
+						// sur la fenêtre principale de Wintel.
+						windowMain.clearFields() ;
 					}
 					catch(IllegalArgumentException erreur) {
 						System.out.println(erreur.getMessage());

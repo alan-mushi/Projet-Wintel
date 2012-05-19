@@ -50,8 +50,9 @@ public class TableFiches {
 		}
 		catch ( EOFException e ) {
 			/*
-			* Il faut voir si on peut pas gérer la fin du fichier plus proprement...
-			*/
+			 * Je n'ai pas trouvé de solution plus élégante
+			 * pour arreter la lecture à la fin du fichier.
+			 */
 		}
 		catch(IOException e) {
 			System.out.println(e.getMessage() );

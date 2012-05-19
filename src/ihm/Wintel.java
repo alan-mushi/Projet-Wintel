@@ -6,7 +6,9 @@ import datas.*;
 import java.util.Enumeration;
 
 /**
-*
+* Classe principale de l'application.<br />
+* Contient les attrbuts graphiques, les accesseurs et les
+* méthodes nécessaires à l'initialisation.
 */
 public class Wintel extends JFrame {
 
@@ -61,6 +63,7 @@ public class Wintel extends JFrame {
 		this.init(); // Création de l'annuaire (+ des 3 WtDialog)
 		this.attacherReactions(); // Ecouteurs des évènements utilisateurs
 		this.setSize(500, 500); // Taille de la fenêtre principale
+		this.chargerEtAfficherAnnuaire() ; // Pour obtenir la liste des contacts au démarrage.
 		this.setVisible(true); // Rendre la fenêtre visible à l'écran
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // Clic sur la croix
 	}
@@ -104,12 +107,18 @@ public class Wintel extends JFrame {
 		labNom = new JLabel("Nom");
 		nom = new JTextField();
 		nom.setForeground( Color.blue ) ;
+		nom.setBackground( Color.white ) ;
+		nom.setEditable( false ) ;
 		labPrenom = new JLabel("Prénom");
 		prenom = new JTextField();
 		prenom.setForeground( Color.blue ) ;
+		prenom.setBackground( Color.white ) ;
+		prenom.setEditable( false ) ;
 		labNumero = new JLabel("Numéro");
 		numero = new JTextField();
 		numero.setForeground( Color.blue ) ;
+		numero.setBackground( Color.white ) ;
+		numero.setEditable( false ) ;
 		composer = new JButton("Composer");
 		panelCaract.add(labNom);
 		panelCaract.add(nom);
@@ -223,6 +232,15 @@ public class Wintel extends JFrame {
 	*/
 	public JMenuItem getItemAide() {
 		return ( this.itemAide ) ;
+	}
+
+	/**
+	* Efface le contenu des JTextField.
+	*/
+	public void clearFields() {
+		nom.setText( "" ) ;
+		prenom.setText( "" ) ;
+		numero.setText( "" ) ;
 	}
 
 	/**

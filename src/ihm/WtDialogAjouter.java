@@ -26,6 +26,8 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	private JTextField txtNom, txtPrenom, txtNumero ;
 	/** Attribut graphique. */
 	private JButton buttonConfirmer, buttonAnnuler ;
+	/** Attribut graphique. */
+	private JPanel panB, panG, panM, panD ;
 
 	/** Attribut utilisé localement. */
 	private Hashtable<String, Fiche> table ;
@@ -82,10 +84,16 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		labelNumero = new JLabel( "Numéro de téléphone" ) ;
 		txtNom = new JTextField() ;
 		txtNom.setForeground( Color.blue ) ;
+		txtNom.setEditable( false ) ;
+		txtNom.setBackground( Color.white ) ;
 		txtPrenom = new JTextField() ;
 		txtPrenom.setForeground( Color.blue ) ;
+		txtPrenom.setEditable( false ) ;
+		txtPrenom.setBackground( Color.white ) ;
 		txtNumero = new JTextField() ;
 		txtNumero.setForeground( Color.blue ) ;
+		txtNumero.setEditable( false ) ;
+		txtNumero.setBackground( Color.white ) ;
 		// création d'un Vector<String> pour JComboBox
 		Vector<String> vect = new Vector<String>( table.size() ) ;
 		Enumeration<String> enu = table.keys() ;
@@ -94,23 +102,31 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		}
 		liste = new JComboBox( vect ) ;
 		// panneau du bas
-		JPanel bas = new JPanel() ;
-		bas.setLayout( new GridLayout( 1 , 2 ) ) ;
+		panB = new JPanel() ;
+		panB.setLayout( new GridLayout( 1 , 2 ) ) ;
 		buttonAnnuler = new JButton( "Annuler" ) ;
 		buttonConfirmer = new JButton( "Confirmer" ) ;
-		bas.add( buttonConfirmer ) ;
-		bas.add( buttonAnnuler ) ;
+		panB.add( buttonConfirmer ) ;
+		panB.add( buttonAnnuler ) ;
 		// panneau central
-		this.setLayout( new GridLayout( 9 , 1 , 10 , 10 ) ) ;
-		this.add( labelOrdre ) ;
-		this.add( liste ) ;
-		this.add( labelNom ) ;
-		this.add( txtNom ) ;
-		this.add( labelPrenom ) ;
-		this.add( txtPrenom ) ;
-		this.add( labelNumero ) ;
-		this.add( txtNumero ) ;
-		this.add( bas ) ;
+		panG = new JPanel() ;
+		panM = new JPanel() ;
+		panD = new JPanel() ;
+
+		panM.setLayout( new GridLayout( 9 , 1 , 10 , 10 ) ) ;
+		panM.add( labelOrdre ) ;
+		panM.add( liste ) ;
+		panM.add( labelNom ) ;
+		panM.add( txtNom ) ;
+		panM.add( labelPrenom ) ;
+		panM.add( txtPrenom ) ;
+		panM.add( labelNumero ) ;
+		panM.add( txtNumero ) ;
+		panM.add( panB ) ;
+		this.setLayout( new BorderLayout() ) ;
+		this.add( panG , BorderLayout.WEST ) ;
+		this.add( panM , BorderLayout.CENTER ) ;
+		this.add( panD , BorderLayout.EAST ) ;
 
 		this.fillFields() ;	// remplit les champs avec le contact sélectionné.
 
