@@ -9,14 +9,14 @@ import java.awt.event.* ;
  */
 public class DialogText extends JDialog implements ActionListener {
 
-	/** Attributs graphiques. */
+	/** Attribut graphique. */
 	private JTextArea txtA ;
-	/** Attributs graphiques. */
+	/** Attribut graphique. */
 	private JButton bFermer ;
-	/** Attributs graphiques. */
+	/** Attribut graphique. */
 	private JPanel panG, panM, panD , panH ;
 
-	/** Attributs utilisés localement. */
+	/** Attribut utilisé localement. */
 	private String texte ;
 	/** Objet Wintel "privé". */
 	private Wintel win ;

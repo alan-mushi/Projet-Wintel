@@ -18,13 +18,13 @@ import javax.swing.* ;
  */
 public class WtDialogAjouter extends JDialog implements ActionListener {
 
-	/** Attributs graphiques. */
+	/** Attribut graphique. */
 	private JLabel labelOrdre, labelNom, labelPrenom, labelNumero ;
-	/** Attributs graphiques. */
+	/** Attribut graphique. */
 	private JComboBox liste ;
-	/** Attributs graphiques. */
+	/** Attribut graphique. */
 	private JTextField txtNom, txtPrenom, txtNumero ;
-	/** Attributs graphiques. */
+	/** Attribut graphique. */
 	private JButton buttonConfirmer, buttonAnnuler ;
 
 	/** Attribut utilisé localement. */
@@ -120,7 +120,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	/**
 	 * Utile dans le cas où le fichier <code>table.bin</code> n'est
 	 * pas dans le répertoire courant.<br />Fait passer la fenêtre
-	 * d'ajout de contacts en fenêtre d'erreur.
+	 * d'ajout de contacts pour une fenêtre d'erreur.
 	 */
 	private void creeInterfaceAlternative() {
 		labelOrdre = new JLabel( "L\'ajout est impossible en raison des erreurs précedentes." , SwingConstants.CENTER ) ;

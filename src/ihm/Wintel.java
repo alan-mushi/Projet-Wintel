@@ -10,57 +10,48 @@ import java.util.Enumeration;
 */
 public class Wintel extends JFrame {
 
-	// Attributs des éléments graphiques
-	//Labels
-	private JLabel labNom;
-	private JLabel labPrenom;
-	private JLabel labNumero;
+	// Attributs graphiques.
 
-	//Zones de texte
-	private JTextField nom;
-	private JTextField prenom;
-	private JTextField numero;
+	/** Label. */
+	private JLabel labNom, labPrenom, labNumero, titreCaracteristiques, titreAbonnes;
 
-	//Boutons
+	/** Zone de texte. */
+	private JTextField nom, prenom, numero;
+
+	/** Bouton. */
 	private JButton composer;
 
-	//Menu
-	private JMenuBar menu;
-	private JMenu menuFichier;
-	private JMenu menuAbonnes;
-	private JMenu menuAide;
+	/** Menu. */
+	private JMenuBar menu, menuFichier, menuAbonnes, menuAide;
 
-	//Item des menus
-	private JMenuItem itemCharger;
-	private JMenuItem itemSauver;
-	private JMenuItem itemQuitter;
-	private JMenuItem itemAjouter;
-	private JMenuItem itemModifier;
-	private JMenuItem itemSupprimer;
-	private JMenuItem itemAide;
+	/** Item du menu. */
+	private JMenuItem itemCharger, itemSauver, itemQuitter, itemAjouter, itemModifier, itemSupprimer, itemAide;
 
-	//Divers
-	private JLabel titreCaracteristiques;
-	private JLabel titreAbonnes;
+	/** Liste des contacts. */
 	private JList listeContacts;
+	/** Associé à la liste des contacts. */
 	private	DefaultListModel liste;
 	
-	//Fenêtres
+	/** Fenêtre de dialogue. */
 	private WtDialogSupprimer supprimerContact;
+	/** Fenêtre de dialogue. */
 	private WtDialogAjouter ajouterContact ;
-	private Annuaire monAnnuaire ;
+	/** Fenêtre de dialogue. */
 	private DialogText aideApp ;
+	/** Annuaire local. */
+	private Annuaire monAnnuaire ;
 
 	/**
-	*
+	* Lanceur de Wintel, cette méthode se contente de créer un nouvel objet Wintel.
+	* @param args Ignoré.
 	*/
 	public static void main(String[] args) {
 		Wintel lanceur = new Wintel();
-		// lanceur.ajouterAbonne("test", "test", "02586685241");
 	}
 
 	/**
-	*
+	* Coordonne les différentes méthodes de cette classe. <code>creerInterface(), init(),
+	* attacherReactions()</code> et rendre la fenêtre visible principalement.
 	*/
 	public Wintel() {
 		super("Wintel"); // Appel du constructeur de JFrame
@@ -73,7 +64,7 @@ public class Wintel extends JFrame {
 	}
 
 	/**
-	*
+	* Dispose tous les éléments graphiques sur la JFrame.
 	*/
 	private void creerInterface() {
 		//Elements de la partie "nord"
@@ -160,7 +151,7 @@ public class Wintel extends JFrame {
 	}
 
 	/**
-	*
+	* Initialise les différentes fenêtres et l'objet Annuaire local.
 	*/
 	private void init() {
 		monAnnuaire = new Annuaire();
@@ -170,7 +161,8 @@ public class Wintel extends JFrame {
 	}
 
 	/**
-	*
+	* Attache les réactions aux éléments graphiques. Utilisé pour le bouton et
+	* les divers menus.
 	*/
 	private void attacherReactions() {
 		itemSauver.addActionListener(new EcouteurItemSauver(this));
@@ -232,7 +224,10 @@ public class Wintel extends JFrame {
 	}
 
 	/**
-	*
+	* Ajoute une Fiche à l'annuaire local et à la JList.<br />
+	* Les exceptions liées à Fiche sont affichées.
+	* @see datas.Annuaire
+	* @see datas.Fiche
 	*/
 	public void ajouterAbonne(String nom , String prenom , String numTel) {
 		Fiche tmpFiche;
@@ -243,7 +238,11 @@ public class Wintel extends JFrame {
 			liste.addElement(tmpFiche.getNom());
 		}
 		catch(IllegalArgumentException e) {
-			/* Déclencher l'ouverture d'une fenêtre ici */
+			/*
+			* Ouverture d'une fenêtre ?
+			* Utile si on laisse le choix à l'utilisateur de 
+			* remplir/modifier les champs de contacts.
+			*/
 			System.out.println(e.getMessage());
 		}
 		catch(Exception e) {
@@ -252,7 +251,9 @@ public class Wintel extends JFrame {
 	}
 	
 	/**
-	*
+	* Chrage le fichier <code>annuaire.out</code> situé dans le 
+	* répertoire courant. Utilise la méthode ajouterAbonne() pour
+	* ajouter les nouvelles instances de Fiche dans l'annuaire local.
 	*/
 	public void chargerEtAfficherAnnuaire() {
 		Annuaire unAnnuaire = Annuaire.charger();
