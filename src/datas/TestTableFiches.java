@@ -13,7 +13,7 @@ public class TestTableFiches {
 		Hashtable<String, Fiche> htable = TableFiches.lireTableFiches() ;
 
 		if ( htable != null ) {
-			// Aperçu du contenu en intégrité.
+			// Aperçu du contenu en intégralité.
 			System.out.println( htable.toString() );
 
 			System.out.println( "\n\n===========================================================================" ) ;

@@ -1,8 +1,8 @@
 package datas ;
 
 /**
-* Cette classe teste la classe Fiche.
-*/
+ * Cette classe teste la classe Fiche.
+ */
 public class TestFiche {
 
 	public static void main( String[] args ) {

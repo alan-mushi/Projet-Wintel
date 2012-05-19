@@ -3,29 +3,32 @@ package ihm;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Cette classe gère la fenêtre de modification d'un contact.
+ */
 public class WtDialogModifier extends JDialog {
-	//Labels
-	private JLabel labelTitre;
-	private JLabel labelNom;
-	private JLabel labelPrenom;
-	private JLabel labelNum;
-	
-	//Bouttons
-	private JButton bouttonConfirmer;
-	private JButton bouttonAnnuler;
-	
-	//Zones de textes
-	private JTextField nom;
-	private JTextField prenom;
-	private JTextField num;
 
+	/** Attribut graphique. */
+	private JLabel labelTitre, labelNom, labelPrenom, labelNum;
+	/** Attribut graphique. */
+	private JButton bouttonConfirmer, bouttonAnnuler;
+	/** Attribut graphique. */
+	private JTextField nom, prenom, num;
+
+	/** Copie locale de Wintel. */
 	private Wintel parent;
-	
+
+	/**
+	 * Le constructeur permet également de mettre en place l'interface graphique.
+	 */
 	public WtDialogModifier(Wintel parent) {
 		this.parent = parent;
 		this.creerInterface();
 	}
-	
+
+	/**
+	 *
+	 */
 	private void creerInterface() {
 		//Boutton en bas
 		bouttonConfirmer = new JButton("Confirmer");
@@ -33,20 +36,22 @@ public class WtDialogModifier extends JDialog {
 		JPanel panelBoutton = new JPanel(new GridLayout(1, 2));
 		panelBoutton.add(bouttonConfirmer);
 		panelBoutton.add(bouttonAnnuler);
-		
+
 		//Panel principal
 		labelTitre = new JLabel("Contact à modifier (nom inchangé)");
 		labelTitre.setHorizontalAlignment(SwingConstants.CENTER);
 		labelTitre.setForeground(Color.blue);
-		
+
 		labelNom = new JLabel("Nom : ");
 		labelPrenom = new JLabel("Prénom : ");
 		labelNum = new JLabel("Téléphone : ");
-		
+
 		nom = new JTextField();
+		nom.setEditable( false ) ;
+		nom.setBackground( Color.white ) ;
 		prenom = new JTextField();
 		num = new JTextField();
-		
+
 		BorderLayout gestionnairePlacement = new BorderLayout(10, 10);
 		JPanel panelCentre = new JPanel(new GridLayout(8, 1, 0, 10));
 		JPanel panelGauche = new JPanel();
@@ -65,5 +70,7 @@ public class WtDialogModifier extends JDialog {
 		panelCentre.add(labelNum);
 		panelCentre.add(num);
 		panelCentre.add(panelBoutton);
+
+		this.setVisible( true ) ;
 	}
 }

@@ -3,9 +3,9 @@ package datas ;
 import java.util.Enumeration ;
 
 /**
-* Teste toutes les méthodes de la classe Annuaire.<br />
-* Un ensemble de tests basés sur des erreurs ou valides sont réalisés.
-*/
+ * Teste toutes les méthodes de la classe Annuaire.<br />
+ * Un ensemble de tests basés sur des erreurs ou valides sont réalisés.
+ */
 public class TestAnnuaire {
 	public static void main( String[] args ) {
 		/* Création de Fiches */
