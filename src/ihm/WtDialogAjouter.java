@@ -157,7 +157,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		else if ( src == liste ) {
 			this.fillFields() ;
 		}
-		else if ( ! alternate ) {
+		else if ( alternate ) {
 			this.setVisible( false ) ;
 			WErreurGenerique erreurW = new WErreurGenerique( "Le fichier 'table.bin' n'a pas été trouvé. Veuillez l'ajouter." ) ;
 		}
