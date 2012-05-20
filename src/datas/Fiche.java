@@ -20,9 +20,9 @@ public class Fiche implements java.io.Serializable {
 	 * contient le paramètre fautif.
 	 */
 	public Fiche( String leNom , String lePrenom , String leTel ) throws IllegalArgumentException {
-		if ( leNom == null || leNom.isEmpty() ) { throw new IllegalArgumentException( "Le Nom n'est pas valide ") ; }
-		else if ( lePrenom == null || lePrenom.isEmpty() ) { throw new IllegalArgumentException( "Le Prenom n'est pas valide ") ; }
-		else if ( leTel == null || leTel.isEmpty() ) { throw new IllegalArgumentException( "Le Tel n'est pas valide ") ; }
+		if ( leNom == null || leNom.isEmpty() ) { throw new IllegalArgumentException( "Le nom n'est pas valide ") ; }
+		else if ( lePrenom == null || lePrenom.isEmpty() ) { throw new IllegalArgumentException( "Le prenom n'est pas valide ") ; }
+		else if ( leTel == null || leTel.isEmpty() ) { throw new IllegalArgumentException( "Le numéro de téléphone n'est pas valide ") ; }
 		this.nom = leNom ;
 		this.prenom = lePrenom ;
 		this.telephone = leTel ;

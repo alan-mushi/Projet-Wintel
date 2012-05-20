@@ -81,22 +81,24 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * Gestion en local des évènements
+	 * Gestion en local des évènements.
 	 */
 	public void actionPerformed( ActionEvent e ) {
 		Object src = e.getSource() ;
 		if ( src == bouttonConfirmer ) {
 			try {
 				Fiche tmpFiche = new Fiche( nom.getText() , prenom.getText() , num.getText() ) ;
-				parent.rmAbonne() ;
-				parent.ajouterAbonne( tmpFiche ) ;
+				// Si la supression s'est déroulée sans encombres on ajoute la personne.
+				if ( parent.rmAbonne() ) { 
+					parent.ajouterAbonne( tmpFiche ) ; 
+					parent.getAnnuaire().sauver() ;
+				}
+				else { WErreurGenerique erreurW = new WErreurGenerique( "L'abonné n'a pas pu être supprimé." ) ; }
 			}
 			catch ( IllegalArgumentException err ) { 
-				/*
-				 * Ouvrir une fenêtre pour afficher l'erreur.
-				 */
-				err.printStackTrace() ; 
+				WErreurGenerique erreurW = new WErreurGenerique( err.getMessage() ) ; 
 			}
+			catch (Exception err ) { err.printStackTrace() ; }
 			this.setVisible( false ) ;
 		}
 		else if (src == bouttonAnnuler ) { this.setVisible( false ) ; }

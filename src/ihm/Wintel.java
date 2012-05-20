@@ -266,13 +266,13 @@ public class Wintel extends JFrame {
 			 * Ouverture d'une fenêtre pour champs invalides.
 			 * On récupère le message pour remplir la fenêtre d'erreur.
 			 */
-			System.out.println(e.getMessage());
+			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
 		}
 		catch(Exception e) {
 			/*
 			 * Ouverture d'une fenêtre pour clé déjà présente.
 			 */
-			System.out.println(e.getMessage());
+			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
 		}
 	}
 
@@ -282,18 +282,14 @@ public class Wintel extends JFrame {
 	public void ajouterAbonne( Fiche newAb ) {
 		try {
 			monAnnuaire.ajouter( newAb.getNom() , newAb ) ;
+			liste = (DefaultListModel) listeContacts.getModel() ;
+			liste.addElement( newAb.getNom() ) ;
 		}
-		/* 
-		 * L'exception 'IllegalArgumentException' ne devrait 
-		 * pas se lancer comme le nom est verouillé partout.
-		 */
-		catch ( IllegalArgumentException e ) { e.printStackTrace() ; }
+		catch ( IllegalArgumentException e ) { 
+			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
+		}
 		catch ( Exception e ) { 
-			/*
-			 * Ouvrir une fenêtre ici pour dire que le contact est déjà
-			 * présent dans l'annuaire.
-			 */
-			e.printStackTrace() ; 
+			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
 		}
 	}
 
@@ -305,6 +301,10 @@ public class Wintel extends JFrame {
 	public void chargerEtAfficherAnnuaire() {
 		Annuaire unAnnuaire = Annuaire.charger();
 		Enumeration<String> cles = unAnnuaire.cles();
+		/* 
+		* Ajoute chaque cle tiré de l'Enumeration
+		* par le biais de la méthode ajouterAbonne().
+		*/
 		while(cles.hasMoreElements()) {
 			String id = cles.nextElement();
 			try {
@@ -315,24 +315,34 @@ public class Wintel extends JFrame {
 				this.ajouterAbonne(nom, prenom, num);
 			}
 			catch(IllegalArgumentException erreur) {
-				System.out.println(erreur.getMessage());
+				WErreurGenerique erreurW = new WErreurGenerique(erreur.getMessage());
 			}
 		}
 	}
 
 	/**
 	 * Supprime le contact sélectionné de la liste et de l'annuaire.
+	 * @return <code>true</code> si l'opération s'est déroulée correctement, 
+	 * <code>false</code> sinon.
 	 */
-	public void rmAbonne() {
+	public boolean rmAbonne() {
+		boolean res = false ;
 		try {
 			if ( listeContacts.getSelectedValue() != null ) {
 				String valeur = (String) listeContacts.getSelectedValue() ;
 				monAnnuaire.supprimer( valeur ) ;
 				this.liste.removeElement( valeur ) ;
 				this.clearFields() ;
+				res = true ;
 			}
 		}
-		catch ( IllegalArgumentException e ) { e.printStackTrace() ; }
-		catch ( Exception e ) { e.printStackTrace() ; }
+		catch ( IllegalArgumentException e ) { 
+			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
+		}
+		catch ( Exception e ) { 
+			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
+		}
+
+		return ( res ) ;
 	}
 }
