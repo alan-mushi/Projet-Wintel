@@ -10,3 +10,7 @@ Une liste des contacts pré-établie est fournie : `ww/table.bin`.
 Depuis le dossier racine du projet.<br />
 Commande javadoc : `javadoc -docencoding utf8 -private -d doc/ src/datas/* src/ihm/*`<br />
 Le fichier `javadoc.sh` contient la commande et plus car affinités!
+
+## TODO
+
+Faire la javadoc des `EcouteurX`<br />
