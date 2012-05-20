@@ -91,7 +91,6 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 				// Si la supression s'est déroulée sans encombres on ajoute la personne.
 				if ( parent.rmAbonne() ) { 
 					parent.ajouterAbonne( tmpFiche ) ; 
-					parent.getAnnuaire().sauver() ;
 				}
 				else { WErreurGenerique erreurW = new WErreurGenerique( "L'abonné n'a pas pu être supprimé." ) ; }
 			}
@@ -101,7 +100,10 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 			catch (Exception err ) { err.printStackTrace() ; }
 			this.setVisible( false ) ;
 		}
-		else if (src == bouttonAnnuler ) { this.setVisible( false ) ; }
+		else if ( src == bouttonAnnuler ) { this.setVisible( false ) ; }
+		else if ( parent.getListeGche().getSelectedValue() == null ) {	
+			WErreurGenerique erreurW = new WErreurGenerique( "Veuillez sélectionner un contact." ) ; 
+		}
 		else { 
 			nom.setText( parent.getFieldNom().getText() ) ;
 			prenom.setText( parent.getFieldPrenom().getText() ) ;

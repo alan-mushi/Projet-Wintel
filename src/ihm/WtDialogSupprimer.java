@@ -88,8 +88,11 @@ public class WtDialogSupprimer extends JDialog implements ActionListener {
 		if(liste.getSelectedValue() != null) {
 			String valeur = (String) liste.getSelectedValue();
 			aSupprimer.setText(valeur);
+			this.setVisible(true);
 		}
-		this.setVisible(true);
+		else {
+			WErreurGenerique erreurW = new WErreurGenerique( "Veuillez sélectionner un contact." ) ;
+		}
 	}
 
 	/**

@@ -12,9 +12,9 @@ import javax.swing.* ;
  * Cette classe permet l'ajout de contacts dans l'annuaire de Wintel
  * depuis le fichier <code>table.bin</code>.<br />
  * Un mécanisme de vérification et d'alerte à été mis en place pour
- * l'utilisateur. Ainsi, la fenêtre d'ajout des contacts va se
- * comporter différament si le fichier <code>table.bin</code> est présent ou
- * non dans le répertoire courant.
+ * l'utilisateur. Ainsi, la fenêtre d'ajout des contacts 
+ * va alerter l'utilisateur si le fichier <code>table.bin</code> 
+ * n'est pas présent dans le répertoire courant.
  */
 public class WtDialogAjouter extends JDialog implements ActionListener {
 
@@ -45,16 +45,10 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		this.setVisible( false ); // invisible à la création
 		this.theWin = theWin ;
 		this.setLocationByPlatform( true ) ;
-		/* 
-		 * L'action sur le bouton annuler est ajouté dans les deux cas par le code qui suit.
-		 * L'action ne s'effectuait pas si il était initialisé dans les méthodes
-		 * creerInterface() et creeInterfaceAlternative().
-		 */
 		try {
 			this.table = TableFiches.lireTableFiches(); // lecture des fiches disponibles
 			this.creerInterface(); // mise en place du décor (voir Figure 4)
 			this.attacherReactions(); // écouteurs sur les boutons et JComboBox
-			buttonAnnuler.addActionListener( this ) ;
 		}
 		catch ( NullPointerException e ) {
 			/*
@@ -69,8 +63,8 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * Cette méthode dispose les éléments graphiques "normalement".
-	 * Donc uniquement si la lecture du fichier <code>table.bin</code> a réussi.
+	 * Cette méthode dispose les éléments graphiques
+	 * uniquement si la lecture du fichier <code>table.bin</code> a réussi.
 	 */
 	private void creerInterface() {
 		this.setSize( 400, 400 );
@@ -137,6 +131,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	 */
 	private void attacherReactions() {
 		if ( this.alternate == false ) {
+			buttonAnnuler.addActionListener( this ) ;
 			buttonConfirmer.addActionListener( this ) ;
 			liste.addActionListener( this ) ;
 		}
