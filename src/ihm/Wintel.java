@@ -200,28 +200,28 @@ public class Wintel extends JFrame {
 	 *
 	 */
 	public JList getListeGche() {
-		return (this.listeContacts) ;
+		return ( this.listeContacts ) ;
 	}
 
 	/**
 	 *
 	 */
 	public JTextField getFieldNom() { 
-		return (this.nom) ;
+		return ( this.nom ) ;
 	}
 
 	/**
 	 *
 	 */
 	public JTextField getFieldPrenom() {
-		return (this.prenom) ;
+		return ( this.prenom ) ;
 	}
 
 	/**
 	 *
 	 */
 	public JTextField getFieldNumero() {
-		return (this.numero) ;
+		return ( this.numero ) ;
 	}
 
 	/**
@@ -263,19 +263,42 @@ public class Wintel extends JFrame {
 		}
 		catch(IllegalArgumentException e) {
 			/*
-			 * Ouverture d'une fenêtre ?
-			 * Utile si on laisse le choix à l'utilisateur de 
-			 * remplir/modifier les champs de contacts.
+			 * Ouverture d'une fenêtre pour champs invalides.
+			 * On récupère le message pour remplir la fenêtre d'erreur.
 			 */
 			System.out.println(e.getMessage());
 		}
 		catch(Exception e) {
+			/*
+			 * Ouverture d'une fenêtre pour clé déjà présente.
+			 */
 			System.out.println(e.getMessage());
 		}
 	}
 
 	/**
-	 * Chrage le fichier <code>annuaire.out</code> situé dans le 
+	 * Ajoute un abonné avec une fiche. Les exceptions sont traitées en local.
+	 */
+	public void ajouterAbonne( Fiche newAb ) {
+		try {
+			monAnnuaire.ajouter( newAb.getNom() , newAb ) ;
+		}
+		/* 
+		 * L'exception 'IllegalArgumentException' ne devrait 
+		 * pas se lancer comme le nom est verouillé partout.
+		 */
+		catch ( IllegalArgumentException e ) { e.printStackTrace() ; }
+		catch ( Exception e ) { 
+			/*
+			 * Ouvrir une fenêtre ici pour dire que le contact est déjà
+			 * présent dans l'annuaire.
+			 */
+			e.printStackTrace() ; 
+		}
+	}
+
+	/**
+	 * Charge le fichier <code>annuaire.out</code> situé dans le 
 	 * répertoire courant. Utilise la méthode ajouterAbonne() pour
 	 * ajouter les nouvelles instances de Fiche dans l'annuaire local.
 	 */
@@ -295,5 +318,21 @@ public class Wintel extends JFrame {
 				System.out.println(erreur.getMessage());
 			}
 		}
+	}
+
+	/**
+	 * Supprime le contact sélectionné de la liste et de l'annuaire.
+	 */
+	public void rmAbonne() {
+		try {
+			if ( listeContacts.getSelectedValue() != null ) {
+				String valeur = (String) listeContacts.getSelectedValue() ;
+				monAnnuaire.supprimer( valeur ) ;
+				this.liste.removeElement( valeur ) ;
+				this.clearFields() ;
+			}
+		}
+		catch ( IllegalArgumentException e ) { e.printStackTrace() ; }
+		catch ( Exception e ) { e.printStackTrace() ; }
 	}
 }

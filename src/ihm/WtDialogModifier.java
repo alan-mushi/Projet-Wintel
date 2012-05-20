@@ -3,6 +3,7 @@ package ihm;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import datas.* ;
 
 /**
  * Cette classe gère la fenêtre de modification d'un contact.
@@ -85,11 +86,25 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 	public void actionPerformed( ActionEvent e ) {
 		Object src = e.getSource() ;
 		if ( src == bouttonConfirmer ) {
-
-		}
-		else if (src == bouttonAnnuler ) {
+			try {
+				Fiche tmpFiche = new Fiche( nom.getText() , prenom.getText() , num.getText() ) ;
+				parent.rmAbonne() ;
+				parent.ajouterAbonne( tmpFiche ) ;
+			}
+			catch ( IllegalArgumentException err ) { 
+				/*
+				 * Ouvrir une fenêtre pour afficher l'erreur.
+				 */
+				err.printStackTrace() ; 
+			}
 			this.setVisible( false ) ;
 		}
-		else { this.setVisible( true ) ; }
+		else if (src == bouttonAnnuler ) { this.setVisible( false ) ; }
+		else { 
+			nom.setText( parent.getFieldNom().getText() ) ;
+			prenom.setText( parent.getFieldPrenom().getText() ) ;
+			num.setText( parent.getFieldNumero().getText() ) ;
+			this.setVisible( true ) ; 
+		}
 	}
 }
