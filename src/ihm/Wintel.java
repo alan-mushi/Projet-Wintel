@@ -266,7 +266,7 @@ public class Wintel extends JFrame {
 			 * Ouverture d'une fenêtre pour champs invalides.
 			 * On récupère le message pour remplir la fenêtre d'erreur.
 			 */
-			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
+			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage()) ;
 		}
 		catch(Exception e) {
 			/*

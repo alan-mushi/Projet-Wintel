@@ -62,10 +62,8 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 			 * Ouvertre d'une fenêtre pour indiquer à l'utilisateur
 			 * que le fichier 'table.bin' n'a pas été trouvé.
 			 */
-			WtDialogAjouterTableBin erreurTableBin = new WtDialogAjouterTableBin() ;
-			this.creeInterfaceAlternative() ;
-			buttonAnnuler.addActionListener( this ) ;
 			this.setVisible( false ) ;
+			WErreurGenerique erreurW = new WErreurGenerique( "Le fichier 'table.bin' n'a pas été trouvé. Veuillez l'ajouter." ) ;
 		}
 
 	}
@@ -134,22 +132,6 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * Utile dans le cas où le fichier <code>table.bin</code> n'est
-	 * pas dans le répertoire courant.<br />Fait passer la fenêtre
-	 * d'ajout de contacts pour une fenêtre d'erreur.
-	 */
-	private void creeInterfaceAlternative() {
-		labelOrdre = new JLabel( "L\'ajout est impossible en raison des erreurs précedentes." , SwingConstants.CENTER ) ;
-		labelOrdre.setForeground( Color.blue ) ;
-		buttonAnnuler = new JButton( "Retour" ) ;
-		this.setLayout( new GridLayout( 2 , 1 ) ) ;
-		this.add( labelOrdre ) ;
-		this.add( buttonAnnuler ) ;
-		this.setSize( 500, 200 );
-		this.alternate = true ;
-	}
-
-	/**
 	 * Cette méthode est utilisée si le fichier <code>table.bin</code>
 	 * est dans le répertoire courant.
 	 */
@@ -179,6 +161,10 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		}
 		else if ( src == liste ) {
 			this.fillFields() ;
+		}
+		else if ( ! alternate ) {
+			this.setVisible( false ) ;
+			WErreurGenerique erreurW = new WErreurGenerique( "Le fichier 'table.bin' n'a pas été trouvé. Veuillez l'ajouter." ) ;
 		}
 		else { this.setVisible( true ) ; }
 	}

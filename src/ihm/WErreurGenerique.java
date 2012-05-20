@@ -14,7 +14,7 @@ import java.awt.event.* ;
 public class WErreurGenerique extends JDialog implements ActionListener {
 
 	/** Attribut graphique. */
-	private JPanel panG , panD , panM , panI ;
+	private JPanel pan ;
 	/** Attribut graphique. */
 	private JButton back ;
 	/** Attribut graphique. */
@@ -25,6 +25,7 @@ public class WErreurGenerique extends JDialog implements ActionListener {
 	 * @param erreur Texte d'erreur à afficher.
 	 */
 	public WErreurGenerique( String erreur ) {
+		this.setTitle( "Erreur" ) ;
 		this.creeInterface( erreur ) ;
 		back.addActionListener( this ) ;
 	}
@@ -35,16 +36,23 @@ public class WErreurGenerique extends JDialog implements ActionListener {
 	 * @param messageErreur Erreur à afficher.
 	 */
 	private void creeInterface( String messageErreur ) {
+		pan = new JPanel() ;
+
 		back = new JButton( "Retour" ) ;
 		msg = new JLabel( messageErreur ) ;
 		msg.setHorizontalAlignment( SwingConstants.CENTER ) ;
 		msg.setForeground( Color.blue ) ;
 
+		pan.setLayout( new FlowLayout( FlowLayout.CENTER ) ) ;
+		pan.add( back ) ;
 		this.setLayout( new GridLayout( 2 , 1 ) ) ;
 		this.add( msg ) ;
-		this.add( back ) ;
-
-		this.setSize( 400 , 200 ) ;
+		this.add( pan ) ;
+		/* 
+		 * Dimensionnement dynamique de la fenêtre d'erreur
+		 * en fonction de la taille du message d'erreur.
+		 */
+		this.setSize( (messageErreur.length()*8) + 20 , 150 ) ;
 		this.setVisible( true ) ;
 	}
 
