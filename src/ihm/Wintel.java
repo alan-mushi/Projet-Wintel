@@ -2,7 +2,9 @@ package ihm;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import datas.*;
+import control.* ;
 import java.util.Enumeration;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Enumeration;
  * Contient les attrbuts graphiques, les accesseurs et les
  * méthodes nécessaires à l'initialisation.
  */
-public class Wintel extends JFrame {
+public class Wintel extends JFrame implements ActionListener {
 
 	// Attributs graphiques.
 
@@ -186,9 +188,9 @@ public class Wintel extends JFrame {
 	 * les divers menus.
 	 */
 	private void attacherReactions() {
-		itemSauver.addActionListener(new EcouteurItemSauver(this));
-		itemCharger.addActionListener(new EcouteurItemCharger(this));
-		itemQuitter.addActionListener(new EcouteurItemQuitter(this));
+		itemSauver.addActionListener( this );
+		itemCharger.addActionListener( this );
+		itemQuitter.addActionListener( this );
 		listeContacts.addMouseListener(new EcouteurListeGche(this));
 		itemSupprimer.addActionListener(supprimerContact);
 		itemAjouter.addActionListener( ajouterContact ) ;
@@ -358,5 +360,22 @@ public class Wintel extends JFrame {
 		}
 
 		return ( res ) ;
+	}
+
+	/**
+	 *
+	 */
+	public void actionPerformed( ActionEvent e ) {
+		Object src = e.getSource() ;
+		if ( src == itemSauver ) {
+			monAnnuaire.sauver() ;
+		}
+		else if ( src == itemCharger ) {
+			this.chargerEtAfficherAnnuaire() ;
+		}
+		else if ( src == itemQuitter ) {
+			this.dispose() ;
+		}
+		else { System.out.println("Oo boy ! " + src ) ; }
 	}
 }
