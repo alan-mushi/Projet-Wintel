@@ -190,49 +190,56 @@ public class Wintel extends JFrame {
 	}
 
 	/**
-	 *
+	 * Permet de récupérer l'annuaire.
+	 * @return L'annuaire actuel.
 	 */
 	public Annuaire getAnnuaire() {
 		return this.monAnnuaire;
 	}
 
 	/**
-	 *
+	 * Permet de récupérer la JList de l'interface principale.
+	 * @return Retourne la liste de gauche présente dans la fenêtre principale.
 	 */
 	public JList getListeGche() {
 		return ( this.listeContacts ) ;
 	}
 
 	/**
-	 *
+	 * Récupère le champs contenant le nom du contact.
+	 * @return Retourne le champs contenant le nom.
 	 */
 	public JTextField getFieldNom() { 
 		return ( this.nom ) ;
 	}
 
 	/**
-	 *
+	 * Récupère le champs contenant le prénom du contact.
+	 * @return Retourne le champs contenant le prénom.
 	 */
 	public JTextField getFieldPrenom() {
 		return ( this.prenom ) ;
 	}
 
 	/**
-	 *
+	 * Renvoie le champs contenant le numéro de téléphone du contact.
+	 * @return Le champs contenant le numéro du contact.
 	 */
 	public JTextField getFieldNumero() {
 		return ( this.numero ) ;
 	}
 
 	/**
-	 *
+	 * Retourne la liste des contacts contenu dans la JList de la fenêtre principale.
+	 * @return La liste des contacts affiché dans la JList.
 	 */
 	public DefaultListModel getListe() {
 		return this.liste;
 	}
 
 	/**
-	 *
+	 * Retourne le JMenuItem du menu de la fenêtre principale.
+	 * @return Le JMenuItem permettant d'accèder à la fenêtre de l'aide.
 	 */
 	public JMenuItem getItemAide() {
 		return ( this.itemAide ) ;
