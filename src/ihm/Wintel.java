@@ -15,10 +15,10 @@ public class Wintel extends JFrame {
 	// Attributs graphiques.
 
 	/** Label. */
-	private JLabel labNom, labPrenom, labNumero, titreCaracteristiques, titreAbonnes;
+	private JLabel labNom, labPrenom, labNumero, titreCaracteristiques, titreAbonnes, labAdresse;
 
 	/** Zone de texte. */
-	private JTextField nom, prenom, numero;
+	private JTextField nom, prenom, numero, adresse;
 
 	/** Bouton. */
 	private JButton composer;
@@ -121,6 +121,11 @@ public class Wintel extends JFrame {
 		numero.setForeground( Color.blue ) ;
 		numero.setBackground( Color.white ) ;
 		numero.setEditable( false ) ;
+		labAdresse = new JLabel("Adresse");
+		adresse = new JTextField();
+		adresse.setForeground(Color.blue);
+		adresse.setBackground(Color.white);
+		adresse.setEditable(false);
 		composer = new JButton("Composer");
 		panelCaract.add(labNom);
 		panelCaract.add(nom);
@@ -128,6 +133,8 @@ public class Wintel extends JFrame {
 		panelCaract.add(prenom);
 		panelCaract.add(labNumero);
 		panelCaract.add(numero);
+		panelCaract.add(labAdresse);
+		panelCaract.add(adresse);
 		panelCaract.add(composer);
 		//Création du menu
 		menu = new JMenuBar();
