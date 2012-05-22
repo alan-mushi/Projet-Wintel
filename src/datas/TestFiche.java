@@ -6,7 +6,7 @@ package datas ;
 public class TestFiche {
 
 	public static void main( String[] args ) {
-		Fiche fiche ;
+		Fiche fiche = null;
 		System.out.println( "--------------------------------------------------------------" ) ;
 		System.out.println( "	Test du constructeur\n" ) ;
 		// Test Constructeur Fiche avec et sans erreurs.
