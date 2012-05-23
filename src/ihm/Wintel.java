@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import datas.*;
-import control.* ;
+//import control.* ;
 import java.util.Enumeration;
 
 /**

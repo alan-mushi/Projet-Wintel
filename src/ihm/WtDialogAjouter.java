@@ -19,11 +19,11 @@ import javax.swing.* ;
 public class WtDialogAjouter extends JDialog implements ActionListener {
 
 	/** Attribut graphique. */
-	private JLabel labelOrdre, labelNom, labelPrenom, labelNumero ;
+	private JLabel labelOrdre, labelNom, labelPrenom, labelNumero, labelAdresse ;
 	/** Attribut graphique. */
 	private JComboBox liste ;
 	/** Attribut graphique. */
-	private JTextField txtNom, txtPrenom, txtNumero ;
+	private JTextField txtNom, txtPrenom, txtNumero, txtAdresse ;
 	/** Attribut graphique. */
 	private JButton buttonConfirmer, buttonAnnuler ;
 	/** Attribut graphique. */
@@ -74,6 +74,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		labelNom = new JLabel( "Nom" ) ;
 		labelPrenom = new JLabel( "Prenom" ) ;
 		labelNumero = new JLabel( "Numéro de téléphone" ) ;
+		labelAdresse = new JLabel("Adresse : ");
 		txtNom = new JTextField() ;
 		txtNom.setForeground( Color.blue ) ;
 		txtNom.setEditable( false ) ;
@@ -86,6 +87,10 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		txtNumero.setForeground( Color.blue ) ;
 		txtNumero.setEditable( false ) ;
 		txtNumero.setBackground( Color.white ) ;
+		txtAdresse = new JTextField();
+		txtAdresse.setForeground(Color.blue);
+		txtAdresse.setEditable(false);
+		txtAdresse.setBackground(Color.white);
 		// création d'un Vector<String> pour JComboBox
 		Vector<String> vect = new Vector<String>( table.size() ) ;
 		Enumeration<String> enu = table.keys() ;
@@ -105,7 +110,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		panM = new JPanel() ;
 		panD = new JPanel() ;
 
-		panM.setLayout( new GridLayout( 9 , 1 , 10 , 10 ) ) ;
+		panM.setLayout( new GridLayout( 11 , 1 , 10 , 10 ) ) ;
 		panM.add( labelOrdre ) ;
 		panM.add( liste ) ;
 		panM.add( labelNom ) ;
@@ -114,6 +119,8 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		panM.add( txtPrenom ) ;
 		panM.add( labelNumero ) ;
 		panM.add( txtNumero ) ;
+		panM.add(labelAdresse);
+		panM.add(txtAdresse);
 		panM.add( panB ) ;
 		this.setLayout( new BorderLayout() ) ;
 		this.add( panG , BorderLayout.WEST ) ;

@@ -11,11 +11,11 @@ import datas.* ;
 public class WtDialogModifier extends JDialog implements ActionListener {
 
 	/** Attribut graphique. */
-	private JLabel labelTitre, labelNom, labelPrenom, labelNum;
+	private JLabel labelTitre, labelNom, labelPrenom, labelNum, labelAdresse;
 	/** Attribut graphique. */
 	private JButton bouttonConfirmer, bouttonAnnuler;
 	/** Attribut graphique. */
-	private JTextField nom, prenom, num;
+	private JTextField nom, prenom, num,adresse;
 
 	/** Copie locale de Wintel. */
 	private Wintel parent;
@@ -52,15 +52,17 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 		labelNom = new JLabel("Nom : ");
 		labelPrenom = new JLabel("Prénom : ");
 		labelNum = new JLabel("Téléphone : ");
+		labelAdresse = new JLabel("Adresse : ");
 
 		nom = new JTextField();
 		nom.setEditable( false ) ;
 		nom.setBackground( Color.white ) ;
 		prenom = new JTextField();
 		num = new JTextField();
+		adresse = new JTextField();
 
 		BorderLayout gestionnairePlacement = new BorderLayout(10, 10);
-		JPanel panelCentre = new JPanel(new GridLayout(8, 1, 0, 10));
+		JPanel panelCentre = new JPanel(new GridLayout(10, 1, 0, 10));
 		JPanel panelGauche = new JPanel();
 		JPanel panelDroit = new JPanel();
 		JPanel panelBas = new JPanel();
@@ -76,6 +78,8 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 		panelCentre.add(prenom);
 		panelCentre.add(labelNum);
 		panelCentre.add(num);
+		panelCentre.add(labelAdresse);
+		panelCentre.add(adresse);
 		panelCentre.add(panelBoutton);
 
 	}
