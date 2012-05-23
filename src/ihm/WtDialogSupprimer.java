@@ -3,6 +3,7 @@ package ihm;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import control.* ;
 
 /**
  * Cette classe intervient lors de la suppression d'un contact.
@@ -75,7 +76,7 @@ public class WtDialogSupprimer extends JDialog implements ActionListener {
 	 * @see EcouteurConfirmerSuppression Lié au bouton confirmer.
 	 */
 	public void attacherReactions() {
-		annuler.addActionListener(new EcouteurAnnulerSupprimer(this));
+		annuler.addActionListener( this ) ;
 		confirmer.addActionListener(new EcouteurConfirmerSuppression(this));
 	}
 
@@ -85,11 +86,13 @@ public class WtDialogSupprimer extends JDialog implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		JList liste = parent.getListeGche();
+		Object src = e.getSource() ;
 		if(liste.getSelectedValue() != null) {
 			String valeur = (String) liste.getSelectedValue();
 			aSupprimer.setText(valeur);
 			this.setVisible(true);
 		}
+		else if ( src == annuler ) { this.setVisible( false ) ; }
 		else {
 			WErreurGenerique erreurW = new WErreurGenerique( "Veuillez sélectionner un contact." ) ;
 		}

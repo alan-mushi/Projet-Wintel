@@ -1,24 +1,12 @@
-package ihm ;
+package control ;
 
 import javax.swing.* ;
 import java.awt.* ;
 import java.awt.event.* ;
 import datas.* ;
+import ihm.* ;
 
-class EcouteurListeGche extends MouseAdapter {
-
-	/**
-	 * La référence sur Wintel
-	 */
-	private Wintel theWin;
-
-	/**
-	 * Constructeur : lui donner la référence sur Wintel
-	 * sinon l’accès aux méthodes de Wintel est impossible.
-	 */
-	public EcouteurListeGche ( Wintel monWin ) {
-		this.theWin = monWin;
-	}
+class Ecouteurs extends MouseAdapter implements Global, ActionListener {
 
 	/**
 	 * Méthode de REACTION au clic souris sur un élément de la JList
@@ -26,7 +14,7 @@ class EcouteurListeGche extends MouseAdapter {
 	public void mouseClicked ( MouseEvent e ) {
 		String cle;
 		// Accès à la JList
-		JList maListe = theWin.getListeGche();
+		JList maListe = win.getListeGche();
 		// getListeGche accesseur de Wintel
 		// Récupération de l’endroit (index) où l’utilisateur a cliqué
 		int index = maListe.locationToIndex(e.getPoint());
@@ -43,20 +31,33 @@ class EcouteurListeGche extends MouseAdapter {
 			cle = (String)tab.get(index);
 			// La clé (nom de la personne) permet de récupérer la fiche de la personne
 			// dans l’annuaire
-			Annuaire monA = theWin.getAnnuaire();
+			Annuaire monA = win.getAnnuaire();
 			// getAnnuaire accesseur de Wintel
 			Fiche laFiche = monA.consulter(cle);
 			// Affichage des informations de la fiche dans les 3 champs textuels
 			// de droite
-			JTextField nom = theWin.getFieldNom();
+			JTextField nom = win.getFieldNom();
 			// accesseur de Wintel
 			nom.setText(laFiche.getNom());
-			JTextField prenom = theWin.getFieldPrenom();
+			JTextField prenom = win.getFieldPrenom();
 			// accesseur de Wintel
 			prenom.setText(laFiche.getPrenom());
-			JTextField num = theWin.getFieldNumero();
+			JTextField num = win.getFieldNumero();
 			// accesseur de Wintel
 			num.setText(laFiche.getTelephone());
+		}
+	}
+
+	/**
+	 *
+	 */
+	public void actionPerformed( ActionEvent e ) {
+		Object src = e.getSource() ;
+		if ( src == win.getItemSauver() ) {
+			annu.sauver() ;
+		}
+		else if ( src == win.getItemCharger() ) {
+			win.chargerEtAfficherAnnuaire() ;
 		}
 	}
 }

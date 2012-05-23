@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import datas.*;
-//import control.* ;
+import control.* ;
 import java.util.Enumeration;
 
 /**
@@ -215,24 +215,32 @@ public class Wintel extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * Récupère le champs contenant le nom du contact.
-	 * @return Retourne le champs contenant le nom.
+	 * Récupère le champ contenant le nom du contact.
+	 * @return Retourne le champ contenant le nom.
 	 */
 	public JTextField getFieldNom() { 
 		return ( this.nom ) ;
 	}
 
 	/**
-	 * Récupère le champs contenant le prénom du contact.
-	 * @return Retourne le champs contenant le prénom.
+	 * Récupère le champ contenant le prénom du contact.
+	 * @return Retourne le champ contenant le prénom.
 	 */
 	public JTextField getFieldPrenom() {
 		return ( this.prenom ) ;
 	}
 
 	/**
-	 * Renvoie le champs contenant le numéro de téléphone du contact.
-	 * @return Le champs contenant le numéro du contact.
+	 * Récupère le champ contenant l'adresse du contact.
+	 * @return Retourne le champ contenant l'adresse. 
+	 */
+	public JTextField getFieldAdresse() {
+		return ( this.adresse ) ;
+	}
+
+	/**
+	 * Renvoie le champ contenant le numéro de téléphone du contact.
+	 * @return Le champ contenant le numéro du contact.
 	 */
 	public JTextField getFieldNumero() {
 		return ( this.numero ) ;
@@ -252,6 +260,22 @@ public class Wintel extends JFrame implements ActionListener {
 	 */
 	public JMenuItem getItemAide() {
 		return ( this.itemAide ) ;
+	}
+
+	/**
+	 * Retourne le JMenuItem du menu de la fenêtre principale.
+	 * @return Le JMenuItem permettant le chargement.
+	 */
+	public JMenuItem getItemCharger() {
+		return ( this.itemCharger ) ;
+	}
+
+	/**
+	 * Retourne le JMenuItem du menu de la fenêtre principale.
+	 * @return Le JMenuItem permettant de sauver l'annuaire.
+	 */
+	public JMenuItem getItemSauver() {
+		return ( this.itemSauver ) ;
 	}
 
 	/**
