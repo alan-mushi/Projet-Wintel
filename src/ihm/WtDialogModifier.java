@@ -91,7 +91,11 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 		Object src = e.getSource() ;
 		if ( src == bouttonConfirmer ) {
 			try {
+				/*
+				La ligne ci-dessous fonctionne avec le programme de base sans le champs adresse*/
 				Fiche tmpFiche = new Fiche( nom.getText() , prenom.getText() , num.getText() ) ;
+				
+				//FicheAdresse tmpFiche = new FicheAdresse(nom.getText(), prenom.getText(), num.getText(), adresse.getText());
 				// Si la supression s'est déroulée sans encombres on ajoute la personne.
 				if ( parent.rmAbonne() ) { 
 					parent.ajouterAbonne( tmpFiche ) ; 
@@ -112,6 +116,7 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 			nom.setText( parent.getFieldNom().getText() ) ;
 			prenom.setText( parent.getFieldPrenom().getText() ) ;
 			num.setText( parent.getFieldNumero().getText() ) ;
+			adresse.setText(parent.getFieldAdresse().getText());
 			this.setVisible( true ) ; 
 		}
 	}

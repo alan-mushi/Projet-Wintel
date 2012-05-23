@@ -7,11 +7,11 @@ package datas ;
 public class Fiche implements java.io.Serializable {
 
 	/** Attributs d'une Fiche. */
-	private String nom , prenom , telephone ;
+	private String nom , prenom , telephone, adresse ;
 
 	/**
 	 * Ce constructeur gère différents cas de non validité
-	 * des arguments sui lui sont passé en paramètre.
+	 * des arguments qui lui sont passé en paramètre.
 	 * @param leNom Nom à affecter à la Fiche.
 	 * @param lePrenom Prenom à affecter à la Fiche.
 	 * @param leTel Numéro de téléphone à affecter à la Fiche, le fait que le numéro
@@ -26,6 +26,25 @@ public class Fiche implements java.io.Serializable {
 		this.nom = leNom ;
 		this.prenom = lePrenom ;
 		this.telephone = leTel ;
+	}
+	
+	/**
+	 * Ce constructeur gère différents cas de non validité
+	 * des arguments qui lui sont passé en paramètre.
+	 * @param leNom Nom à affecter à la Fiche.
+	 * @param lePrenom Prenom à affecter à la Fiche.
+	 * @param leTel Numéro de téléphone à affecter à la Fiche, le fait que le numéro
+	 * ne soit pas composé de chiffres n'est pas vérifié ici.
+	 * @param ladresse l'adresse à affecter à la Fiche.
+	 * @throws IllegalArgumentException Un des paramètres n'est pas valide, le message d'exception
+	 * contient le paramètre fautif.
+	 */
+	public Fiche(String leNom, String lePrenom, String leTel, String ladresse) {
+		this(leNom, lePrenom, leTel);
+		if(ladresse == null || ladresse.isEmpty()) {
+			throw new IllegalArgumentException("L'adresse n'est pas valide.");
+		}
+		this.adresse = ladresse;
 	}
 
 	/**
@@ -45,6 +64,14 @@ public class Fiche implements java.io.Serializable {
 	 * @return Le numéro de la Fiche.
 	 */
 	public String getTelephone() { return ( this.telephone ) ; }
+	
+	/**
+	 * Accesseur pour l'adresse.
+	 * @return L'adresse de la Fiche.
+	 */
+	public String getAdresse() {
+		return this.adresse;
+	}
 
 	/**
 	 * Toutes les informations sur la Fiche en une String.
@@ -53,7 +80,8 @@ public class Fiche implements java.io.Serializable {
 	public String toString() {
 		String res = "---------------------\nNom : " + this.nom ;
 		res += "\nPrenom : " + this.prenom ;
-		res += "\nTelephone : " + this.telephone + "\n" ;
+		res += "\nTelephone : " + this.telephone ;
+		res += "\nAdresse : " + this.adresse +"\n" ;
 		return ( res ) ;
 	}
 }
