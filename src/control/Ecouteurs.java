@@ -6,7 +6,7 @@ import java.awt.event.* ;
 import datas.* ;
 import ihm.* ;
 
-class Ecouteurs extends MouseAdapter implements Global, ActionListener {
+public class Ecouteurs extends MouseAdapter implements Global, ActionListener {
 
 	/**
 	 * Méthode de REACTION au clic souris sur un élément de la JList

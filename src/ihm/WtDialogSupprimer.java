@@ -85,16 +85,17 @@ public class WtDialogSupprimer extends JDialog implements ActionListener {
 	 * dans le liste de l'objet Wintel.
 	 */
 	public void actionPerformed(ActionEvent e) {
-		JList liste = parent.getListeGche();
 		Object src = e.getSource() ;
-		if(liste.getSelectedValue() != null) {
-			String valeur = (String) liste.getSelectedValue();
-			aSupprimer.setText(valeur);
-			this.setVisible(true);
-		}
-		else if ( src == annuler ) { this.setVisible( false ) ; }
-		else {
-			WErreurGenerique erreurW = new WErreurGenerique( "Veuillez sélectionner un contact." ) ;
+		if ( src == this.annuler ) { this.setVisible( false ) ; }
+		else {JList liste = parent.getListeGche();
+			if(liste.getSelectedValue() != null) {
+				String valeur = (String) liste.getSelectedValue();
+				aSupprimer.setText(valeur);
+				this.setVisible(true);
+			}
+			else if ( liste.getSelectedValue() == null ) {
+				WErreurGenerique erreurW = new WErreurGenerique( "Veuillez sélectionner un contact." ) ;
+			}
 		}
 	}
 
