@@ -6,7 +6,13 @@ import java.awt.event.* ;
 import datas.* ;
 import ihm.* ;
 
-public class Ecouteurs extends MouseAdapter implements Global, ActionListener {
+public class Ecouteurs extends MouseAdapter implements ActionListener {
+
+	private Wintel win ;
+
+	public Ecouteurs( Wintel theWin ) {
+		this.win = theWin ;
+	}
 
 	/**
 	 * Méthode de REACTION au clic souris sur un élément de la JList
@@ -54,7 +60,9 @@ public class Ecouteurs extends MouseAdapter implements Global, ActionListener {
 	public void actionPerformed( ActionEvent e ) {
 		Object src = e.getSource() ;
 		if ( src == win.getItemSauver() ) {
-			annu.sauver() ;
+			System.out.println( "win before : " + win ) ;
+			win.getAnnuaire().sauver() ;
+			System.out.println( "win after : " + win ) ;
 		}
 		else if ( src == win.getItemCharger() ) {
 			win.chargerEtAfficherAnnuaire() ;

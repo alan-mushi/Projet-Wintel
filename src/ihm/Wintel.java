@@ -14,6 +14,9 @@ import java.util.Enumeration;
  */
 public class Wintel extends JFrame implements ActionListener {
 
+	/** */
+	private Ecouteurs ecout ;
+	/** */
 	// Attributs graphiques.
 
 	/** Label. */
@@ -176,6 +179,9 @@ public class Wintel extends JFrame implements ActionListener {
 	 * Initialise les différentes fenêtres et l'objet Annuaire local.
 	 */
 	private void init() {
+		/** */
+		ecout = new Ecouteurs( this ) ;
+		/** */
 		monAnnuaire = new Annuaire();
 		supprimerContact = new WtDialogSupprimer(this);
 		ajouterContact = new WtDialogAjouter( this ) ;
@@ -188,8 +194,8 @@ public class Wintel extends JFrame implements ActionListener {
 	 * les divers menus.
 	 */
 	private void attacherReactions() {
-		itemSauver.addActionListener( this );
-		itemCharger.addActionListener( this );
+		itemSauver.addActionListener( ecout );
+		itemCharger.addActionListener( ecout );
 		itemQuitter.addActionListener( this );
 		listeContacts.addMouseListener(new EcouteurListeGche(this));
 		itemSupprimer.addActionListener(supprimerContact);
@@ -340,6 +346,7 @@ public class Wintel extends JFrame implements ActionListener {
 	 */
 	public void chargerEtAfficherAnnuaire() {
 		Annuaire unAnnuaire = Annuaire.charger();
+		System.err.println( "[-] unAnnuaire & : " + unAnnuaire ) ;
 		Enumeration<String> cles = unAnnuaire.cles();
 		/* 
 		* Ajoute chaque cle tiré de l'Enumeration
