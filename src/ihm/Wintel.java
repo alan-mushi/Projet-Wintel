@@ -14,9 +14,6 @@ import java.util.Enumeration;
  */
 public class Wintel extends JFrame implements ActionListener {
 
-	/** */
-	private Ecouteurs ecout ;
-	/** */
 	// Attributs graphiques.
 
 	/** Label. */
@@ -51,6 +48,8 @@ public class Wintel extends JFrame implements ActionListener {
 	private Annuaire monAnnuaire ;
 	/** Fenêtre de dialogue. */
 	private WtDialogModifier modifierContact ;
+	/** Ecouteur de toutes les action de Wintel. */
+	private Ecouteurs ecout ;
 
 	/**
 	 * Lanceur de Wintel, cette méthode se contente de créer un nouvel objet Wintel.
@@ -179,9 +178,7 @@ public class Wintel extends JFrame implements ActionListener {
 	 * Initialise les différentes fenêtres et l'objet Annuaire local.
 	 */
 	private void init() {
-		/** */
 		ecout = new Ecouteurs( this ) ;
-		/** */
 		monAnnuaire = new Annuaire();
 		supprimerContact = new WtDialogSupprimer(this);
 		ajouterContact = new WtDialogAjouter( this ) ;
@@ -291,6 +288,7 @@ public class Wintel extends JFrame implements ActionListener {
 		nom.setText( "" ) ;
 		prenom.setText( "" ) ;
 		numero.setText( "" ) ;
+		adresse.setText( "" ) ;
 	}
 
 	/**
@@ -327,9 +325,11 @@ public class Wintel extends JFrame implements ActionListener {
 	 */
 	public void ajouterAbonne( Fiche newAb ) {
 		try {
-			monAnnuaire.ajouter( newAb.getNom() , newAb ) ;
 			liste = (DefaultListModel) listeContacts.getModel() ;
-			liste.addElement( newAb.getNom() ) ;
+			if ( this.notInListe( newAb ) ) {
+				monAnnuaire.ajouter( newAb.getNom() , newAb ) ;
+				liste.addElement( newAb.getNom() ) ;
+			}
 		}
 		catch ( IllegalArgumentException e ) { 
 			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
@@ -340,26 +340,44 @@ public class Wintel extends JFrame implements ActionListener {
 	}
 
 	/**
+	 * Cette méthode test la présence d'une Fiche ayant la 
+	 * même valeur pour l'attribut nom que la contact à ajouter.
+	 * La présence des noms des fiches est recherchée par le biais
+	 * de l'<code>Enumeration</code> renvoyée par la méthode
+	 * <code>cles()</code> d'annuaire.
+	 * @param toTest Fiche dont on teste l'existance d'un nom similaire.
+	 * @return <code>true</code> si le nom n'est pas déjà présent dans
+	 * l'annuaire, <code>false</code> sinon.
+	 */
+	private boolean notInListe( Fiche toTest ) {
+		boolean res = true ;
+		String toTestNom = toTest.getNom() ;
+		Enumeration<String> cles = monAnnuaire.cles();
+		while ( cles.hasMoreElements() && res ) {
+			String id = cles.nextElement() ;
+			Fiche ficheId = monAnnuaire.consulter( id ) ;
+			if ( ficheId.getNom().equals( toTestNom ) ) { res = false ; }
+		}
+		return ( res ) ;
+	}
+
+	/**
 	 * Charge le fichier <code>annuaire.out</code> situé dans le 
 	 * répertoire courant. Utilise la méthode ajouterAbonne() pour
 	 * ajouter les nouvelles instances de Fiche dans l'annuaire local.
 	 */
 	public void chargerEtAfficherAnnuaire() {
 		Annuaire unAnnuaire = Annuaire.charger();
-		System.err.println( "[-] unAnnuaire & : " + unAnnuaire ) ;
 		Enumeration<String> cles = unAnnuaire.cles();
 		/* 
-		* Ajoute chaque cle tiré de l'Enumeration
-		* par le biais de la méthode ajouterAbonne().
-		*/
+		 * Ajoute chaque cle tiré de l'Enumeration
+		 * par le biais de la méthode ajouterAbonne().
+		 */
 		while(cles.hasMoreElements()) {
 			String id = cles.nextElement();
 			try {
 				Fiche fichePersonne = unAnnuaire.consulter(id);
-				String nom = fichePersonne.getNom() ;
-				String prenom = fichePersonne.getPrenom();
-				String num = fichePersonne.getTelephone();
-				this.ajouterAbonne(nom, prenom, num);
+				this.ajouterAbonne( fichePersonne );
 			}
 			catch(IllegalArgumentException erreur) {
 				WErreurGenerique erreurW = new WErreurGenerique(erreur.getMessage());
@@ -398,13 +416,7 @@ public class Wintel extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed( ActionEvent e ) {
 		Object src = e.getSource() ;
-		if ( src == itemSauver ) {
-			monAnnuaire.sauver() ;
-		}
-		else if ( src == itemCharger ) {
-			this.chargerEtAfficherAnnuaire() ;
-		}
-		else if ( src == itemQuitter ) {
+		if ( src == itemQuitter ) {
 			this.dispose() ;
 		}
 		else { System.out.println("Oo boy ! " + src ) ; }
