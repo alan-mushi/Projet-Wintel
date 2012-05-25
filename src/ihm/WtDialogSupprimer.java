@@ -72,12 +72,12 @@ public class WtDialogSupprimer extends JDialog implements ActionListener {
 
 	/**
 	 * Lie les boutons à des actions par le biais de classes extérieures.
-	 * @see EcouteurAnnulerSupprimer Lié au bouton annuler.
 	 * @see EcouteurConfirmerSuppression Lié au bouton confirmer.
 	 */
 	public void attacherReactions() {
+		// La "fermeture" de la fenêtre est traitée en local.
 		annuler.addActionListener( this ) ;
-		confirmer.addActionListener(new EcouteurConfirmerSuppression(this));
+		confirmer.addActionListener( parent.getEcouteurs() ) ;
 	}
 
 	/**
@@ -87,7 +87,8 @@ public class WtDialogSupprimer extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource() ;
 		if ( src == this.annuler ) { this.setVisible( false ) ; }
-		else {JList liste = parent.getListeGche();
+		else {
+			JList liste = parent.getListeGche();
 			if(liste.getSelectedValue() != null) {
 				String valeur = (String) liste.getSelectedValue();
 				aSupprimer.setText(valeur);
@@ -100,9 +101,9 @@ public class WtDialogSupprimer extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * Acesseur utilisé par les classes chargées de la réaction aux clics.
+	 * Acesseur utilisé par la classe Ecouteurs.
 	 */
-	public Wintel getParent() {
-		return parent;
+	public JButton getJButtonConfirmer() {
+		return ( this.confirmer ) ;
 	}
 }

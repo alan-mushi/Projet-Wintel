@@ -65,6 +65,10 @@ public class Ecouteurs extends MouseAdapter implements ActionListener {
 		else if ( src == win.getItemCharger() ) {
 			win.chargerEtAfficherAnnuaire() ;
 		}
+		else if ( src == win.getWtDialogSupprimer().getJButtonConfirmer() ) {
+			win.rmAbonne() ;
+			win.getWtDialogSupprimer().setVisible( false ) ;
+		}
 	}
 }
 

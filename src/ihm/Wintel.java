@@ -194,7 +194,7 @@ public class Wintel extends JFrame implements ActionListener {
 		itemSauver.addActionListener( ecout );
 		itemCharger.addActionListener( ecout );
 		itemQuitter.addActionListener( this );
-		listeContacts.addMouseListener(new EcouteurListeGche(this));
+		listeContacts.addMouseListener( ecout ) ;
 		itemSupprimer.addActionListener(supprimerContact);
 		itemAjouter.addActionListener( ajouterContact ) ;
 		itemAide.addActionListener( aideApp ) ;
@@ -279,6 +279,20 @@ public class Wintel extends JFrame implements ActionListener {
 	 */
 	public JMenuItem getItemSauver() {
 		return ( this.itemSauver ) ;
+	}
+
+	/**
+	 *
+	 */
+	public WtDialogSupprimer getWtDialogSupprimer() {
+		return ( this.supprimerContact) ;
+	}
+
+	/**
+	 *
+	 */
+	public Ecouteurs getEcouteurs() {
+		return ( this.ecout ) ;
 	}
 
 	/**
@@ -419,6 +433,5 @@ public class Wintel extends JFrame implements ActionListener {
 		if ( src == itemQuitter ) {
 			this.dispose() ;
 		}
-		else { System.out.println("Oo boy ! " + src ) ; }
 	}
 }
