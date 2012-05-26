@@ -32,7 +32,7 @@ public class WtDialogSupprimer extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * Dispose les attrubust graphiques.
+	 * Dispose les attributs graphiques.
 	 */
 	public void creerInterface() {
 		// Boutton en bas
@@ -72,7 +72,6 @@ public class WtDialogSupprimer extends JDialog implements ActionListener {
 
 	/**
 	 * Lie les boutons à des actions par le biais de classes extérieures.
-	 * @see EcouteurConfirmerSuppression Lié au bouton confirmer.
 	 */
 	public void attacherReactions() {
 		// La "fermeture" de la fenêtre est traitée en local.
@@ -95,7 +94,7 @@ public class WtDialogSupprimer extends JDialog implements ActionListener {
 				this.setVisible(true);
 			}
 			else if ( liste.getSelectedValue() == null ) {
-				WErreurGenerique erreurW = new WErreurGenerique( "Veuillez sélectionner un contact." ) ;
+				JOptionPane.showMessageDialog( parent , "Veuillez sélectionner un contact." , "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
 			}
 		}
 	}

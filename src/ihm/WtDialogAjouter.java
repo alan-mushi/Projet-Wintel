@@ -57,7 +57,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 			 * que le fichier 'table.bin' n'a pas été trouvé.
 			 */
 			this.setVisible( false ) ;
-			WErreurGenerique erreurW = new WErreurGenerique( "Le fichier 'table.bin' n'a pas été trouvé. Veuillez l'ajouter." ) ;
+			JOptionPane.showMessageDialog( this , "Le fichier 'table.bin' n'a pas été trouvé. Veuillez l'ajouter." , "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
 		}
 
 	}
@@ -166,7 +166,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		}
 		else if ( alternate ) {
 			this.setVisible( false ) ;
-			WErreurGenerique erreurW = new WErreurGenerique( "Le fichier 'table.bin' n'a pas été trouvé. Veuillez l'ajouter." ) ;
+			JOptionPane.showMessageDialog( this , "Le fichier 'table.bin' n'a pas été trouvé. Veuillez l'ajouter.", "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
 		}
 		else { this.setVisible( true ) ; }
 	}

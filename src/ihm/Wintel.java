@@ -172,6 +172,7 @@ public class Wintel extends JFrame implements ActionListener {
 		setJMenuBar(menu);
 
 		this.setLocationByPlatform( true ) ;
+		this.setAlwaysOnTop( false ) ;
 	}
 
 	/**
@@ -326,13 +327,13 @@ public class Wintel extends JFrame implements ActionListener {
 			 * Ouverture d'une fenêtre pour champs invalides.
 			 * On récupère le message pour remplir la fenêtre d'erreur.
 			 */
-			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage()) ;
+			JOptionPane.showMessageDialog( this , e.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
 		}
 		catch(Exception e) {
 			/*
 			 * Ouverture d'une fenêtre pour clé déjà présente.
 			 */
-			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
+			JOptionPane.showMessageDialog( this , e.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
 		}
 	}
 
@@ -348,10 +349,10 @@ public class Wintel extends JFrame implements ActionListener {
 			}
 		}
 		catch ( IllegalArgumentException e ) { 
-			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
+			JOptionPane.showMessageDialog( this , e.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
 		}
 		catch ( Exception e ) { 
-			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
+			JOptionPane.showMessageDialog( this , e.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
 		}
 	}
 
@@ -397,12 +398,12 @@ public class Wintel extends JFrame implements ActionListener {
 					this.ajouterAbonne( fichePersonne );
 				}
 				catch(IllegalArgumentException erreur) {
-					WErreurGenerique erreurW = new WErreurGenerique(erreur.getMessage());
+			JOptionPane.showMessageDialog( this , erreur.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
 				}
 			}
 		}
 		else {
-			WErreurGenerique erreurW = new WErreurGenerique( "Le fichier 'annuaire.out' n'a pas été trouvé. Veuillez l'ajouter." ) ;
+			JOptionPane.showMessageDialog( this , "Le fichier 'annuaire.out' n'a pas été trouvé. Veuillez l'ajouter." , "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
 		}
 	}
 
@@ -423,10 +424,10 @@ public class Wintel extends JFrame implements ActionListener {
 			}
 		}
 		catch ( IllegalArgumentException e ) { 
-			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
+			JOptionPane.showMessageDialog( this , e.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
 		}
 		catch ( Exception e ) { 
-			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
+			JOptionPane.showMessageDialog( this , e.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
 		}
 		return ( res ) ;
 	}

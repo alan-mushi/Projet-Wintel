@@ -55,7 +55,7 @@ public class DialogText extends JDialog implements ActionListener {
 			"Pour voir les caractéristiques des contacts chargés par défaut, cliquez sur le contact.\n" +
 			"Les champs de caractéristiques ne sont pas modifiables, il faut passer par la fenêtre de modification.\n\n\n" +
 			"0x03 - Menus\n" +
-			"------------\n" +
+			"------------\n\n" +
 			"Le menu est décomposé en trois parties :\n" +
 			" * Fichier\n * Abonnés\n * Aide\n\n" +
 			"Vous êtes en train d'admirer la fenêtre d'aie actuellement.\n" +

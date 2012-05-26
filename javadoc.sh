@@ -9,6 +9,6 @@ else
 	echo Votre path ici
 fi
 
-javadoc -docencoding utf8 -private -d doc/ src/datas/* src/ihm/*
+javadoc -docencoding utf8 -private -d doc/ src/datas/* src/ihm/* src/control/*
 
 popd

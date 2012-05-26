@@ -91,26 +91,25 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 		Object src = e.getSource() ;
 		if ( src == bouttonConfirmer ) {
 			try {
-				/*
-				La ligne ci-dessous fonctionne avec le programme de base sans le champs adresse*/
+				/* La ligne ci-dessous fonctionne avec le programme de base sans le champs adresse. */
 				Fiche tmpFiche = new Fiche( nom.getText() , prenom.getText() , num.getText() ) ;
 				
-				//FicheAdresse tmpFiche = new FicheAdresse(nom.getText(), prenom.getText(), num.getText(), adresse.getText());
+				// FicheAdresse tmpFiche = new FicheAdresse(nom.getText(), prenom.getText(), num.getText(), adresse.getText());
 				// Si la supression s'est déroulée sans encombres on ajoute la personne.
 				if ( parent.rmAbonne() ) { 
 					parent.ajouterAbonne( tmpFiche ) ; 
 				}
-				else { WErreurGenerique erreurW = new WErreurGenerique( "L'abonné n'a pas pu être supprimé." ) ; }
+				else { JOptionPane.showMessageDialog( this , "L'abonné n'a pas pu être supprimé.", "Erreur" , JOptionPane.WARNING_MESSAGE ) ; }
 			}
 			catch ( IllegalArgumentException err ) { 
-				WErreurGenerique erreurW = new WErreurGenerique( err.getMessage() ) ; 
+				JOptionPane.showMessageDialog( this , err.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
 			}
 			catch (Exception err ) { err.printStackTrace() ; }
 			this.setVisible( false ) ;
 		}
 		else if ( src == bouttonAnnuler ) { this.setVisible( false ) ; }
 		else if ( parent.getListeGche().getSelectedValue() == null ) {	
-			WErreurGenerique erreurW = new WErreurGenerique( "Veuillez sélectionner un contact." ) ; 
+			JOptionPane.showMessageDialog( parent , "Veuillez sélectionner un contact." , "Erreur" , JOptionPane.WARNING_MESSAGE ); 
 		}
 		else { 
 			nom.setText( parent.getFieldNom().getText() ) ;
