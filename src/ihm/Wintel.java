@@ -291,6 +291,22 @@ public class Wintel extends JFrame implements ActionListener {
 	}
 
 	/**
+	 * Acesseur de la fenêtre modifier.
+	 * @return Objet WtDialogModifier.
+	 */
+	public WtDialogModifier getWtDialogModifier() {
+		return ( this.modifierContact ) ;
+	}
+
+	/**
+	 * Acesseur de la fenêtre ajouter.
+	 * @return Objet WtDialogAjouter.
+	 */
+	public WtDialogAjouter getWtDialogAjouter() {
+		return ( this.ajouterContact ) ;
+	}
+
+	/**
 	 * Accesseur de l'objet <code>Ecouteurs</code>.
 	 * @return Objet qui gère les Ecouteurs.
 	 */

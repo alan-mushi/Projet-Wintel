@@ -15,7 +15,7 @@ public class Ecouteurs extends MouseAdapter implements ActionListener {
 	}
 
 	/**
-	 * Méthode de REACTION au clic souris sur un élément de la JList
+	 * Méthode de réaction au clic souris sur un élément de la JList.
 	 */
 	public void mouseClicked ( MouseEvent e ) {
 		String cle;
@@ -55,7 +55,7 @@ public class Ecouteurs extends MouseAdapter implements ActionListener {
 	}
 
 	/**
-	 *
+	 * Méthode de réaction aux évènements pour Wintel et ses fenêtres satellites.
 	 */
 	public void actionPerformed( ActionEvent e ) {
 		Object src = e.getSource() ;
@@ -68,6 +68,29 @@ public class Ecouteurs extends MouseAdapter implements ActionListener {
 		else if ( src == win.getWtDialogSupprimer().getJButtonConfirmer() ) {
 			win.rmAbonne() ;
 			win.getWtDialogSupprimer().setVisible( false ) ;
+		}
+		else if ( src == win.getWtDialogModifier().getBouttonConfirmer() ) {
+			try {
+				String[] tab = win.getWtDialogModifier().getJTextField() ;
+				/* La ligne ci-dessous fonctionne avec le programme de base sans le champs adresse. */
+				Fiche tmpFiche = new Fiche( tab[0] , tab[1] , tab[2] ) ;
+
+				// FicheAdresse tmpFiche = new FicheAdresse(nom.getText(), prenom.getText(), num.getText(), adresse.getText());
+				/* Si la supression s'est déroulée sans encombres on ajoute la personne. */
+				if ( win.rmAbonne() ) {
+					win.ajouterAbonne( tmpFiche ) ;
+					win.getWtDialogModifier().setVisible( false ) ;
+				}
+				else { 
+					JOptionPane.showMessageDialog( win.getWtDialogModifier(), "L'abonné n'a pas pu être supprimé.", "Erreur" , JOptionPane.ERROR_MESSAGE ) ;
+				}
+			}
+			catch ( IllegalArgumentException err ) {
+				JOptionPane.showMessageDialog( win.getWtDialogModifier(), err.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
+			}
+			catch ( Exception err ) { 
+				JOptionPane.showMessageDialog( win.getWtDialogModifier(), err.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
+			}
 		}
 	}
 }

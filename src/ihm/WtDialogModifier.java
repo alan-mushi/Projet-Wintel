@@ -13,9 +13,9 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 	/** Attribut graphique. */
 	private JLabel labelTitre, labelNom, labelPrenom, labelNum, labelAdresse;
 	/** Attribut graphique. */
-	private JButton bouttonConfirmer, bouttonAnnuler;
+	private JButton bouttonConfirmer, bouttonAnnuler ;
 	/** Attribut graphique. */
-	private JTextField nom, prenom, num,adresse;
+	private JTextField nom, prenom, num, adresse ;
 
 	/** Copie locale de Wintel. */
 	private Wintel parent;
@@ -26,7 +26,7 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 	public WtDialogModifier(Wintel parent) {
 		this.parent = parent;
 		this.creerInterface();
-		bouttonConfirmer.addActionListener( this ) ;
+		bouttonConfirmer.addActionListener( parent.getEcouteurs() ) ;
 		bouttonAnnuler.addActionListener( this ) ;
 		this.setSize( 400 , 400 ) ;
 		this.setLocationByPlatform( true ) ;
@@ -85,13 +85,32 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 	}
 
 	/**
+	 * Acesseur pour le bonton confirmer.
+	 * @return Le boutton confirmer.
+	 */
+	public JButton getBouttonConfirmer() {
+		return ( this.bouttonConfirmer ) ;
+	}
+
+	/**
+	 * Acesseur pour le contenu des champs de texte.
+	 * @return Un tableau de String. Organisation du tableau : 
+	 * <code>{ [nom] , [prenom] , [num] , [adresse] }</code>
+	 */
+	public String[] getJTextField() {
+		String[] tab = { nom.getText() , prenom.getText() , num.getText() , adresse.getText() } ;
+		return ( tab ) ;
+	}
+
+	/**
 	 * Gestion en local des évènements.
 	 */
 	public void actionPerformed( ActionEvent e ) {
 		Object src = e.getSource() ;
+		/*
 		if ( src == bouttonConfirmer ) {
 			try {
-				/* La ligne ci-dessous fonctionne avec le programme de base sans le champs adresse. */
+				// La ligne ci-dessous fonctionne avec le programme de base sans le champs adresse. 
 				Fiche tmpFiche = new Fiche( nom.getText() , prenom.getText() , num.getText() ) ;
 				
 				// FicheAdresse tmpFiche = new FicheAdresse(nom.getText(), prenom.getText(), num.getText(), adresse.getText());
@@ -105,9 +124,10 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 			catch ( IllegalArgumentException err ) { 
 				JOptionPane.showMessageDialog( this , err.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
 			}
-			catch (Exception err ) { err.printStackTrace() ; }
+			catch ( Exception err ) { err.printStackTrace() ; }
 		}
-		else if ( src == bouttonAnnuler ) { this.setVisible( false ) ; }
+		*/
+		if ( src == bouttonAnnuler ) { this.setVisible( false ) ; }
 		else if ( parent.getListeGche().getSelectedValue() == null ) {	
 			JOptionPane.showMessageDialog( parent , "Veuillez sélectionner un contact." , "Erreur" , JOptionPane.WARNING_MESSAGE ); 
 		}
