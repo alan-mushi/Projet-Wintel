@@ -49,9 +49,9 @@ public class DialogText extends JDialog implements ActionListener {
 			"0x02 - Fenêtre principale\n" +
 			"-------------------------\n\n" +
 			"La fenêtre principale est constituée de trois zones : \n" +
-			" * les menus (détaillés dans le prochain paragraphe\n" +
-			" * la liste des contacts\n" + 
-			" * les caractéristiques des contacts\n\n" +
+			" * Les menus (détaillés dans le prochain paragraphe\n" +
+			" * La liste des contacts\n" + 
+			" * Les caractéristiques des contacts\n\n" +
 			"Pour voir les caractéristiques des contacts chargés par défaut, cliquez sur le contact.\n" +
 			"Les champs de caractéristiques ne sont pas modifiables, il faut passer par la fenêtre de modification.\n\n\n" +
 			"0x03 - Menus\n" +
@@ -63,7 +63,7 @@ public class DialogText extends JDialog implements ActionListener {
 			"Le menu 'Abonné' vous offre la possibilité d'ajouter, modifier et supprimer un contact de l'application?.\n\n\n" +
 			"0x04 - Auteurs\n" +
 			"--------------\n\n" +
-			"Guillaume CLAUDIC et Thibault GUITTET.\nNous avons réalisé à deux l'application de manière égale.\n\n" ;
+			"Guillaume CLAUDIC et Thibault GUITTET." ;
 
 		txtA = new JTextArea( this.texte ) ;
 		txtA.setEditable( false ) ;	// Empêche l'édition de l'aide.

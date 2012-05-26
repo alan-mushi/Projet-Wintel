@@ -38,7 +38,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 
 	/**
 	 * Ce constructeur permet de coordonner les diverses méthodes suivantes.
-	 * @param theWin Objet Wintel, utilisé pour l'ajout du contact.
+	 * @param win Objet Wintel, utilisé pour l'ajout du contact.
 	 */
 	public WtDialogAjouter( Wintel win ) {
 		super( win , "Ajouter un nouveau contact", false ); // appel constructeur JDialog
