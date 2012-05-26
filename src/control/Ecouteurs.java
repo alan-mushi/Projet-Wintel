@@ -8,8 +8,13 @@ import ihm.* ;
 
 public class Ecouteurs extends MouseAdapter implements ActionListener {
 
+	/** Référence locale de Wintel. */
 	private Wintel win ;
 
+	/**
+	 * Le constructeur prend en paramètre un objet de type Wintel.
+	 * @param theWin Objet Wintel.
+	 */
 	public Ecouteurs( Wintel theWin ) {
 		this.win = theWin ;
 	}
@@ -20,7 +25,7 @@ public class Ecouteurs extends MouseAdapter implements ActionListener {
 	public void mouseClicked ( MouseEvent e ) {
 		String cle;
 		// Accès à la JList
-		JList maListe = win.getListeGche();
+		JList maListe = this.win.getListeGche();
 		// getListeGche accesseur de Wintel
 		// Récupération de l’endroit (index) où l’utilisateur a cliqué
 		int index = maListe.locationToIndex(e.getPoint());
@@ -37,18 +42,18 @@ public class Ecouteurs extends MouseAdapter implements ActionListener {
 			cle = (String)tab.get(index);
 			// La clé (nom de la personne) permet de récupérer la fiche de la personne
 			// dans l’annuaire
-			Annuaire monA = win.getAnnuaire();
+			Annuaire monA = this.win.getAnnuaire();
 			// getAnnuaire accesseur de Wintel
 			Fiche laFiche = monA.consulter(cle);
 			// Affichage des informations de la fiche dans les 3 champs textuels
 			// de droite
-			JTextField nom = win.getFieldNom();
+			JTextField nom = this.win.getFieldNom();
 			// accesseur de Wintel
 			nom.setText(laFiche.getNom());
-			JTextField prenom = win.getFieldPrenom();
+			JTextField prenom = this.win.getFieldPrenom();
 			// accesseur de Wintel
 			prenom.setText(laFiche.getPrenom());
-			JTextField num = win.getFieldNumero();
+			JTextField num = this.win.getFieldNumero();
 			// accesseur de Wintel
 			num.setText(laFiche.getTelephone());
 		}
@@ -59,37 +64,57 @@ public class Ecouteurs extends MouseAdapter implements ActionListener {
 	 */
 	public void actionPerformed( ActionEvent e ) {
 		Object src = e.getSource() ;
-		if ( src == win.getItemSauver() ) {
-			win.getAnnuaire().sauver() ;
+		/*
+		 * Action pour l'item 'sauver' du menu 'Fichier'.
+		 */
+		if ( src == this.win.getItemSauver() ) {
+			this.win.getAnnuaire().sauver() ;
 		}
-		else if ( src == win.getItemCharger() ) {
-			win.chargerEtAfficherAnnuaire() ;
+		/*
+		 * Action pour l'item 'charger' du menu 'Fichier'.
+		 */
+		else if ( src == this.win.getItemCharger() ) {
+			this.win.chargerEtAfficherAnnuaire() ;
 		}
-		else if ( src == win.getWtDialogSupprimer().getJButtonConfirmer() ) {
-			win.rmAbonne() ;
-			win.getWtDialogSupprimer().setVisible( false ) ;
+		/*
+		 * Action pour le bouton 'confirmer' de la fenêtre WtDialogSupprimer.
+		 */
+		else if ( src == this.win.getWtDialogSupprimer().getJButtonConfirmer() ) {
+			this.win.rmAbonne() ;
+			this.win.getWtDialogSupprimer().setVisible( false ) ;
 		}
-		else if ( src == win.getWtDialogModifier().getBouttonConfirmer() ) {
+		/*
+		 * Action du bouton 'confirmer' de la fenêtre WtDialogModifier.
+		 */
+		else if ( src == this.win.getWtDialogModifier().getBoutonConfirmer() ) {
 			try {
-				String[] tab = win.getWtDialogModifier().getJTextField() ;
-				/* La ligne ci-dessous fonctionne avec le programme de base sans le champs adresse. */
+				String[] tab = this.win.getWtDialogModifier().getJTextField() ;
 				Fiche tmpFiche = new Fiche( tab[0] , tab[1] , tab[2] ) ;
 
 				// FicheAdresse tmpFiche = new FicheAdresse(nom.getText(), prenom.getText(), num.getText(), adresse.getText());
 				/* Si la supression s'est déroulée sans encombres on ajoute la personne. */
-				if ( win.rmAbonne() ) {
-					win.ajouterAbonne( tmpFiche ) ;
-					win.getWtDialogModifier().setVisible( false ) ;
+				if ( this.win.rmAbonne() ) {
+					this.win.ajouterAbonne( tab[0] , tab[1] , tab[2] ) ;
+					this.win.getWtDialogModifier().setVisible( false ) ;
 				}
 				else { 
-					JOptionPane.showMessageDialog( win.getWtDialogModifier(), "L'abonné n'a pas pu être supprimé.", "Erreur" , JOptionPane.ERROR_MESSAGE ) ;
+					JOptionPane.showMessageDialog( this.win.getWtDialogModifier(), "L'abonné n'a pas pu être supprimé.", "Erreur" , JOptionPane.ERROR_MESSAGE ) ;
 				}
 			}
 			catch ( IllegalArgumentException err ) {
-				JOptionPane.showMessageDialog( win.getWtDialogModifier(), err.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
+				JOptionPane.showMessageDialog( this.win.getWtDialogModifier(), err.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
 			}
 			catch ( Exception err ) { 
-				JOptionPane.showMessageDialog( win.getWtDialogModifier(), err.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
+				JOptionPane.showMessageDialog( this.win.getWtDialogModifier(), err.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
+			}
+		}
+		/*
+		 * Action du bouton 'confirmer' de la fenêtre WtDialogAjouter.
+		 */
+		else if ( src == this.win.getWtDialogAjouter().getBoutonConfirmer() ) {
+			String[] tab = this.win.getWtDialogAjouter().getJTextField() ;
+			if ( this.win.ajouterAbonne( tab[0] , tab[1] , tab[2] ) ) {
+				this.win.getWtDialogAjouter().setVisible( false ) ;
 			}
 		}
 	}

@@ -24,12 +24,12 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 	 * Le constructeur permet également de mettre en place l'interface graphique.
 	 */
 	public WtDialogModifier(Wintel parent) {
+		super( parent , "Modifier un contact" , false ) ;
 		this.parent = parent;
 		this.creerInterface();
-		bouttonConfirmer.addActionListener( parent.getEcouteurs() ) ;
 		bouttonAnnuler.addActionListener( this ) ;
+		bouttonConfirmer.addActionListener( parent.getEcouteurs() ) ;
 		this.setSize( 400 , 400 ) ;
-		this.setLocationByPlatform( true ) ;
 		this.setVisible( false ) ;
 	}
 
@@ -86,9 +86,9 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 
 	/**
 	 * Acesseur pour le bonton confirmer.
-	 * @return Le boutton confirmer.
+	 * @return Le bouton confirmer.
 	 */
-	public JButton getBouttonConfirmer() {
+	public JButton getBoutonConfirmer() {
 		return ( this.bouttonConfirmer ) ;
 	}
 

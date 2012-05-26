@@ -330,13 +330,15 @@ public class Wintel extends JFrame implements ActionListener {
 	 * @see datas.Annuaire
 	 * @see datas.Fiche
 	 */
-	public void ajouterAbonne(String nom , String prenom , String numTel) {
+	public boolean ajouterAbonne(String nom , String prenom , String numTel) {
 		Fiche tmpFiche;
+		boolean res = false ;
 		try {
 			tmpFiche = new Fiche(nom, prenom, numTel);
 			monAnnuaire.ajouter(tmpFiche.getNom(), tmpFiche);
 			liste = (DefaultListModel) listeContacts.getModel();
 			liste.addElement(tmpFiche.getNom());
+			res = true ;
 		}
 		catch(IllegalArgumentException e) {
 			/*
@@ -351,6 +353,7 @@ public class Wintel extends JFrame implements ActionListener {
 			 */
 			JOptionPane.showMessageDialog( this , e.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
 		}
+		return ( res ) ;
 	}
 
 	/**

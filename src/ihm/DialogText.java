@@ -28,7 +28,7 @@ public class DialogText extends JDialog implements ActionListener {
 	 * et lie l'action au bouton.
 	 */
 	public DialogText( Wintel tmpWin ) {
-		super( tmpWin , "Aide de Wintel" , true ) ;
+		super( tmpWin , "Aide de Wintel" , false ) ;
 		this.win = tmpWin ;
 
 		this.texte = "============================\n" +

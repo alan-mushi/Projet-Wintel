@@ -40,10 +40,10 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	 * Ce constructeur permet de coordonner les diverses méthodes suivantes.
 	 * @param theWin Objet Wintel, utilisé pour l'ajout du contact.
 	 */
-	public WtDialogAjouter( Wintel theWin ) {
-		super( theWin, "Ajouter un nouveau contact", true ); // appel constructeur JDialog
+	public WtDialogAjouter( Wintel win ) {
+		super( win , "Ajouter un nouveau contact", false ); // appel constructeur JDialog
+		this.theWin = win ;
 		this.setVisible( false ); // invisible à la création
-		this.theWin = theWin ;
 		this.setLocationByPlatform( true ) ;
 		try {
 			this.table = TableFiches.lireTableFiches(); // lecture des fiches disponibles
@@ -139,10 +139,12 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	private void attacherReactions() {
 		if ( this.alternate == false ) {
 			buttonAnnuler.addActionListener( this ) ;
-			buttonConfirmer.addActionListener( this ) ;
+			buttonConfirmer.addActionListener( theWin.getEcouteurs() ) ;
 			liste.addActionListener( this ) ;
 		}
 	}
+
+
 
 	/**
 	 * Cette méthode gère les actions sur les boutons.
@@ -151,19 +153,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource() ;
 		if ( src == buttonAnnuler ) { this.setVisible( false ) ; }
-		// ajoute l'abonné dans l'annuaire de Wintel.
-		else if ( src == buttonConfirmer ) {
-			String tmpNom, tmpPrenom, tmpNum ;
-			tmpNom = txtNom.getText() ;
-			tmpPrenom = txtPrenom.getText() ;
-			tmpNum = txtNumero.getText() ;
-			theWin.ajouterAbonne( tmpNom, tmpPrenom, tmpNum ) ;
-			theWin.getAnnuaire().sauver() ;
-			this.setVisible( false ) ;
-		}
-		else if ( src == liste ) {
-			this.fillFields() ;
-		}
+		else if ( src == liste ) { this.fillFields() ; }
 		else if ( alternate ) {
 			this.setVisible( false ) ;
 			JOptionPane.showMessageDialog( this , "Le fichier 'table.bin' n'a pas été trouvé. Veuillez l'ajouter.", "Erreur" , JOptionPane.WARNING_MESSAGE ) ;
@@ -181,5 +171,22 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		txtNom.setText( tmpFiche.getNom() ) ;
 		txtPrenom.setText( tmpFiche.getPrenom() ) ;
 		txtNumero.setText( tmpFiche.getTelephone() ) ;	
+	}
+
+	/**
+	 * Acesseur pour le bouton de confirmation.
+	 */
+	public JButton getBoutonConfirmer() {
+		return ( this.buttonConfirmer ) ;
+	}
+
+	/**
+	 * Acesseur pour le contenu des champs de texte.
+	 * @return Un tableau de String. Organisation du tableau : 
+	 * <code>{ [nom] , [prenom] , [num] , [adresse] }</code>
+	 */
+	public String[] getJTextField() {
+		String[] tab = { txtNom.getText() , txtPrenom.getText() , txtNumero.getText() , txtAdresse.getText() } ;
+		return ( tab ) ;
 	}
 }
