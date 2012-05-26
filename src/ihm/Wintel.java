@@ -282,14 +282,16 @@ public class Wintel extends JFrame implements ActionListener {
 	}
 
 	/**
-	 *
+	 * Acesseur de la fenêtre supprimer.
+	 * @return Objet de la fenêtre WtDialogSupprimer.
 	 */
 	public WtDialogSupprimer getWtDialogSupprimer() {
 		return ( this.supprimerContact) ;
 	}
 
 	/**
-	 *
+	 * Accesseur de l'objet <code>Ecouteurs</code>.
+	 * @return Objet qui gère les Ecouteurs.
 	 */
 	public Ecouteurs getEcouteurs() {
 		return ( this.ecout ) ;
@@ -382,20 +384,25 @@ public class Wintel extends JFrame implements ActionListener {
 	 */
 	public void chargerEtAfficherAnnuaire() {
 		Annuaire unAnnuaire = Annuaire.charger();
-		Enumeration<String> cles = unAnnuaire.cles();
-		/* 
-		 * Ajoute chaque cle tiré de l'Enumeration
-		 * par le biais de la méthode ajouterAbonne().
-		 */
-		while(cles.hasMoreElements()) {
-			String id = cles.nextElement();
-			try {
-				Fiche fichePersonne = unAnnuaire.consulter(id);
-				this.ajouterAbonne( fichePersonne );
+		if ( unAnnuaire != null ) {
+			Enumeration<String> cles = unAnnuaire.cles();
+			/* 
+			 * Ajoute chaque cle tiré de l'Enumeration
+			 * par le biais de la méthode ajouterAbonne().
+			 */
+			while(cles.hasMoreElements()) {
+				String id = cles.nextElement();
+				try {
+					Fiche fichePersonne = unAnnuaire.consulter(id);
+					this.ajouterAbonne( fichePersonne );
+				}
+				catch(IllegalArgumentException erreur) {
+					WErreurGenerique erreurW = new WErreurGenerique(erreur.getMessage());
+				}
 			}
-			catch(IllegalArgumentException erreur) {
-				WErreurGenerique erreurW = new WErreurGenerique(erreur.getMessage());
-			}
+		}
+		else {
+			WErreurGenerique erreurW = new WErreurGenerique( "Le fichier 'annuaire.out' n'a pas été trouvé. Veuillez l'ajouter." ) ;
 		}
 	}
 
@@ -421,12 +428,11 @@ public class Wintel extends JFrame implements ActionListener {
 		catch ( Exception e ) { 
 			WErreurGenerique erreurW = new WErreurGenerique( e.getMessage() ) ;
 		}
-
 		return ( res ) ;
 	}
 
 	/**
-	 *
+	 * Ferme la fenêtre principale de WIntel.
 	 */
 	public void actionPerformed( ActionEvent e ) {
 		Object src = e.getSource() ;

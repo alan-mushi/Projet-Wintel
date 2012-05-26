@@ -41,7 +41,7 @@ public class TableFiches {
 					contenu.put(uneFiche.getNom(), uneFiche);
 				}
 				else { System.out.println("Impossible de lire l'objet contenu dans le fichier."); }
-			} while ( resultat != null ) ;
+			} while ( in != null ) ;
 			in.close();
 			fichier.close();
 		}
