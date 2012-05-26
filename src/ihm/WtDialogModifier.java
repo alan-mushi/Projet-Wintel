@@ -98,6 +98,7 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 				// Si la supression s'est déroulée sans encombres on ajoute la personne.
 				if ( parent.rmAbonne() ) { 
 					parent.ajouterAbonne( tmpFiche ) ; 
+					this.setVisible( false ) ;
 				}
 				else { JOptionPane.showMessageDialog( this , "L'abonné n'a pas pu être supprimé.", "Erreur" , JOptionPane.WARNING_MESSAGE ) ; }
 			}
@@ -105,7 +106,6 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 				JOptionPane.showMessageDialog( this , err.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
 			}
 			catch (Exception err ) { err.printStackTrace() ; }
-			this.setVisible( false ) ;
 		}
 		else if ( src == bouttonAnnuler ) { this.setVisible( false ) ; }
 		else if ( parent.getListeGche().getSelectedValue() == null ) {	
