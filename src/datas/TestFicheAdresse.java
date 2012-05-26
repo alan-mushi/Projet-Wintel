@@ -2,7 +2,7 @@ package datas;
 
 public class TestFicheAdresse {
 	public static void main(String[] args) {
-		Fiche fiche = null;
+		/*Fiche fiche = null;
 		System.out.println( "--------------------------------------------------------------");
 		System.out.println( "	Test du constructeur\n" ) ;
 		try {
@@ -44,6 +44,6 @@ public class TestFicheAdresse {
 		catch ( IllegalArgumentException e ) {
 			// Nouvelle instance de Fiche sans erreurs dans les paramètres.
 			System.out.println( "ÉCHOUÉ !") ;
-		}
+		}*/
 	}
 }
