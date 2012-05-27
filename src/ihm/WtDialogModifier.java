@@ -13,7 +13,7 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 	/** Attribut graphique. */
 	private JLabel labelTitre, labelNom, labelPrenom, labelNum, labelAdresse;
 	/** Attribut graphique. */
-	private JButton bouttonConfirmer, bouttonAnnuler ;
+	private JButton boutonConfirmer, boutonAnnuler ;
 	/** Attribut graphique. */
 	private JTextField nom, prenom, num, adresse ;
 
@@ -27,8 +27,8 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 		super( parent , "Modifier un contact" , false ) ;
 		this.parent = parent;
 		this.creerInterface();
-		bouttonAnnuler.addActionListener( this ) ;
-		bouttonConfirmer.addActionListener( parent.getEcouteurs() ) ;
+		boutonAnnuler.addActionListener( this ) ;
+		boutonConfirmer.addActionListener( parent.getEcouteurs() ) ;
 		this.setSize( 400 , 400 ) ;
 		this.setVisible( false ) ;
 	}
@@ -38,11 +38,11 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 	 */
 	private void creerInterface() {
 		//Boutton en bas
-		bouttonConfirmer = new JButton("Confirmer");
-		bouttonAnnuler = new JButton("Annuler");
+		boutonConfirmer = new JButton("Confirmer");
+		boutonAnnuler = new JButton("Annuler");
 		JPanel panelBoutton = new JPanel(new GridLayout(1, 2));
-		panelBoutton.add(bouttonConfirmer);
-		panelBoutton.add(bouttonAnnuler);
+		panelBoutton.add(boutonConfirmer);
+		panelBoutton.add(boutonAnnuler);
 
 		//Panel principal
 		labelTitre = new JLabel("Contact à modifier (nom figé)");
@@ -89,7 +89,7 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 	 * @return Le bouton confirmer.
 	 */
 	public JButton getBoutonConfirmer() {
-		return ( this.bouttonConfirmer ) ;
+		return ( this.boutonConfirmer ) ;
 	}
 
 	/**
@@ -107,27 +107,7 @@ public class WtDialogModifier extends JDialog implements ActionListener {
 	 */
 	public void actionPerformed( ActionEvent e ) {
 		Object src = e.getSource() ;
-		/*
-		if ( src == bouttonConfirmer ) {
-			try {
-				// La ligne ci-dessous fonctionne avec le programme de base sans le champs adresse. 
-				Fiche tmpFiche = new Fiche( nom.getText() , prenom.getText() , num.getText() ) ;
-				
-				// FicheAdresse tmpFiche = new FicheAdresse(nom.getText(), prenom.getText(), num.getText(), adresse.getText());
-				// Si la supression s'est déroulée sans encombres on ajoute la personne.
-				if ( parent.rmAbonne() ) { 
-					parent.ajouterAbonne( tmpFiche ) ; 
-					this.setVisible( false ) ;
-				}
-				else { JOptionPane.showMessageDialog( this , "L'abonné n'a pas pu être supprimé.", "Erreur" , JOptionPane.WARNING_MESSAGE ) ; }
-			}
-			catch ( IllegalArgumentException err ) { 
-				JOptionPane.showMessageDialog( this , err.getMessage() , "Erreur" , JOptionPane.WARNING_MESSAGE );
-			}
-			catch ( Exception err ) { err.printStackTrace() ; }
-		}
-		*/
-		if ( src == bouttonAnnuler ) { this.setVisible( false ) ; }
+		if ( src == boutonAnnuler ) { this.setVisible( false ) ; }
 		else if ( parent.getListeGche().getSelectedValue() == null ) {	
 			JOptionPane.showMessageDialog( parent , "Veuillez sélectionner un contact." , "Erreur" , JOptionPane.WARNING_MESSAGE ); 
 		}
