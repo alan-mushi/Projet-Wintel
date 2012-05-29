@@ -7,7 +7,7 @@ package datas ;
 public class Fiche implements java.io.Serializable {
 
 	/** Attributs d'une Fiche. */
-	private String nom , prenom , telephone/*, adresse */;
+	private String nom , prenom , telephone, adresse;
 
 	/**
 	 * Ce constructeur gère différents cas de non validité
@@ -38,14 +38,14 @@ public class Fiche implements java.io.Serializable {
 	 * @param ladresse l'adresse à affecter à la Fiche.
 	 * @throws IllegalArgumentException Un des paramètres n'est pas valide, le message d'exception
 	 * contient le paramètre fautif.
-	 *
+	 */
 	public Fiche(String leNom, String lePrenom, String leTel, String ladresse) {
 		this(leNom, lePrenom, leTel);
 		if(ladresse == null || ladresse.isEmpty()) {
 			throw new IllegalArgumentException("L'adresse n'est pas valide.");
 		}
 		this.adresse = ladresse;
-	}*/
+	}
 
 	/**
 	 * Accesseur pour le nom.
@@ -68,10 +68,10 @@ public class Fiche implements java.io.Serializable {
 	/**
 	 * Accesseur pour l'adresse.
 	 * @return L'adresse de la Fiche.
-	 *
+	 */
 	public String getAdresse() {
 		return this.adresse;
-	}*/
+	}
 
 	/**
 	 * Toutes les informations sur la Fiche en une String.
@@ -81,7 +81,7 @@ public class Fiche implements java.io.Serializable {
 		String res = "---------------------\nNom : " + this.nom ;
 		res += "\nPrenom : " + this.prenom ;
 		res += "\nTelephone : " + this.telephone + "\n" ;
-		//res += "\nAdresse : " + this.adresse +"\n" ;
+		res += "\nAdresse : " + this.adresse +"\n" ;
 		return ( res ) ;
 	}
 }
