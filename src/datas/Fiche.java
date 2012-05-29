@@ -8,7 +8,8 @@ public class Fiche implements java.io.Serializable {
 
 	/** Attributs d'une Fiche. */
 	private String nom , prenom , telephone, adresse;
-
+	private static final long serialVersionUID = 4994395378390899091L;
+	
 	/**
 	 * Ce constructeur gère différents cas de non validité
 	 * des arguments qui lui sont passé en paramètre.
