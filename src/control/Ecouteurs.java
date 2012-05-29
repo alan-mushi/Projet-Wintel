@@ -59,6 +59,9 @@ public class Ecouteurs extends MouseAdapter implements ActionListener {
 			JTextField num = this.win.getFieldNumero();
 			// accesseur de Wintel
 			num.setText(laFiche.getTelephone());
+			// accesseur de Wintel
+			JTextField adresse = this.win.getFieldAdresse();
+			adresse.setText(laFiche.getAdresse());
 		}
 	}
 
@@ -92,12 +95,11 @@ public class Ecouteurs extends MouseAdapter implements ActionListener {
 		else if ( src == this.win.getWtDialogModifier().getBoutonConfirmer() ) {
 			try {
 				String[] tab = this.win.getWtDialogModifier().getJTextField() ;
-				Fiche tmpFiche = new Fiche( tab[0] , tab[1] , tab[2] ) ;
+				Fiche tmpFiche = new Fiche(tab[0], tab[1], tab[2], tab[3]);
 
-				// FicheAdresse tmpFiche = new FicheAdresse(nom.getText(), prenom.getText(), num.getText(), adresse.getText());
 				/* Si la supression s'est déroulée sans encombres on ajoute la personne. */
 				if ( this.win.rmAbonne() ) {
-					this.win.ajouterAbonne( tab[0] , tab[1] , tab[2] ) ;
+					this.win.ajouterAbonne(tab[0], tab[1], tab[2], tab[3]) ;
 					this.win.getWtDialogModifier().setVisible( false ) ;
 				}
 				else { 
@@ -116,7 +118,7 @@ public class Ecouteurs extends MouseAdapter implements ActionListener {
 		 */
 		else if ( src == this.win.getWtDialogAjouter().getBoutonConfirmer() ) {
 			String[] tab = this.win.getWtDialogAjouter().getJTextField() ;
-			if ( this.win.ajouterAbonne( tab[0] , tab[1] , tab[2] ) ) {
+			if ( this.win.ajouterAbonne(tab[0], tab[1], tab[2], tab[3])) {
 				this.win.getWtDialogAjouter().setVisible( false ) ;
 			}
 		}

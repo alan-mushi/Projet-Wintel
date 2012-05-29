@@ -330,11 +330,11 @@ public class Wintel extends JFrame implements ActionListener {
 	 * @see datas.Annuaire
 	 * @see datas.Fiche
 	 */
-	public boolean ajouterAbonne(String nom , String prenom , String numTel) {
+	public boolean ajouterAbonne(String nom, String prenom, String numTel, String adresse) {
 		Fiche tmpFiche;
 		boolean res = false ;
 		try {
-			tmpFiche = new Fiche(nom, prenom, numTel);
+			tmpFiche = new Fiche(nom, prenom, numTel, adresse);
 			monAnnuaire.ajouter(tmpFiche.getNom(), tmpFiche);
 			liste = (DefaultListModel) listeContacts.getModel();
 			liste.addElement(tmpFiche.getNom());
