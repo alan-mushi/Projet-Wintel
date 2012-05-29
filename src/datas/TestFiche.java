@@ -5,6 +5,9 @@ package datas ;
  */
 public class TestFiche {
 
+	/**
+	 * Unique méthode de la classe TestFiche.
+	 */
 	public static void main( String[] args ) {
 		Fiche fiche = null;
 		System.out.println( "--------------------------------------------------------------" ) ;
