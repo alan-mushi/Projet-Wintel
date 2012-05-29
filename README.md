@@ -8,7 +8,7 @@ L'annuaire est doté d'une interface graphique pour la gestion des contacts.<br 
 Une liste des contacts pré-établie est fournie : `ww/table.bin`.
 
 <br />
-## Stade de développement
+## Stade du développement
 
 * Toutes les action demandées ont été réalisées.
 * Nous avons réalisé deux des points de travail supplémentaire.
