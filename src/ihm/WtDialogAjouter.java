@@ -171,6 +171,7 @@ public class WtDialogAjouter extends JDialog implements ActionListener {
 		txtNom.setText( tmpFiche.getNom() ) ;
 		txtPrenom.setText( tmpFiche.getPrenom() ) ;
 		txtNumero.setText( tmpFiche.getTelephone() ) ;	
+		txtAdresse.setText( tmpFiche.getAdresse() ) ;
 	}
 
 	/**
