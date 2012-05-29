@@ -6,6 +6,9 @@ import java.awt.event.* ;
 import datas.* ;
 import ihm.* ;
 
+/**
+* Classe gérant les évènements de l'application celon le modèle MVC.
+*/
 public class Ecouteurs extends MouseAdapter implements ActionListener {
 
 	/** Référence locale de Wintel. */
