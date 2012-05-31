@@ -14,6 +14,6 @@ else
 	exit
 fi
 
-javadoc -docencoding utf8 -private -d doc/ src/datas/* src/ihm/* src/control/*
+javadoc -docencoding utf8 -encoding utf8 -charset utf8 -private -d doc/ src/datas/* src/ihm/* src/control/*
 
 popd
