@@ -17,6 +17,7 @@ Une liste des contacts pré-établie est fournie : `ww/table.bin`.
 ## Toute la javadoc est à générer sur sa propre machine !
 
 Depuis le dossier racine du projet.<br />
+<b>Merci de remplir le champ <code>else</code> avec votre path dans le fichier <code>javadoc.sh</code>.</b><br />
 Commande javadoc : `javadoc -docencoding utf8 -charset utf8 -private -d doc/ src/datas/* src/ihm/*`<br />
 Le fichier `javadoc.sh` contient la commande et plus...
 Le fichier `ww/compile.sh` permet de compiler avec le bon encodage puis donne le choix d'exécuter ou non Wintel.
