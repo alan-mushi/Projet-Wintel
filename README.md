@@ -29,6 +29,11 @@ Le fichier `ww/compile.sh` permet de compiler avec le bon encodage puis donne le
 * Proposer un codage conforme au modèle MVC vu en cours.
 
 <br />
+## Git et GitHub
+
+Pour réaliser ce projet nous avons utlisé Git et GitHub. Nous vous encourageons à aller voir par vous même le [repository](https://github.com/alan-mushi/Projet-Wintel/). Vous y trouverez également les divers problèmes que nous avons résolu dans l'onglet "Issues". Ainsi que les "Tags" dans la section éponyme (à coté de de "Downloads").
+ 
+<br />
 ## Auteurs
 
 * CLAUDIC Guillaume - zipang29
