@@ -16,7 +16,7 @@ Une liste des contacts pré-établie est fournie : `ww/table.bin`.
 <br />
 ## Toute la javadoc est à générer sur sa propre machine !
 
-Depuis le dossier racine du projet.<br />
+Commandes a exécuter depuis le dossier racine du projet.<br />
 <b>Merci de remplir le champ <code>else</code> avec votre path dans le fichier <code>javadoc.sh</code>.</b><br />
 Commande javadoc : `javadoc -docencoding utf8 -charset utf8 -private -d doc/ src/datas/* src/ihm/*`<br />
 Le fichier `javadoc.sh` contient la commande et plus...
