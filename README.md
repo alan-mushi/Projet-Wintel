@@ -31,7 +31,7 @@ Le fichier `ww/compile.sh` permet de compiler avec le bon encodage puis donne le
 <br />
 ## Git et GitHub
 
-Pour réaliser ce projet nous avons utlisé Git et GitHub. Vous pouvez aller voir le [repository] à cette adresse : https://github.com/alan-mushi/Projet-Wintel/. Vous y trouverez également les divers problèmes que nous avons résolu dans l'onglet "Issues". Ainsi que les "Tags" dans la section éponyme (à coté de "Downloads").
+Pour réaliser ce projet nous avons utlisé Git et GitHub. Vous pouvez aller voir le [repository](https://github.com/alan-mushi/Projet-Wintel/). Vous y trouverez également les divers problèmes que nous avons résolu dans l'onglet "Issues". Ainsi que les "Tags" dans la section éponyme (à coté de "Downloads").
  
 <br />
 ## Auteurs
