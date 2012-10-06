@@ -37,4 +37,4 @@ Pour réaliser ce projet nous avons utlisé Git et GitHub. Vous pouvez aller voi
 ## Auteurs
 
 * CLAUDIC Guillaume - zipang29
-*  - alan-mushi
+* GUITTET Thibault - alan-mushi
